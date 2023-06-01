@@ -1,8 +1,8 @@
 #include "window.h"
 
 
-Window::Window()
-{
+Window::Window() {
+    this->_player_ship = new PlayerShip(1);
     load_and_bind_textures();
 }
 
@@ -18,11 +18,9 @@ void Window::run()
     //https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php
     window.setKeyRepeatEnabled(false);
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             switch (event.type) {
             case sf::Event::Closed:
                  window.close();
@@ -41,29 +39,27 @@ void Window::run()
                 } else
                     std::cout << "Keyboard pressed = " << event.key.code << std::endl;
                 break;
-            
             }
         }
 
         window.clear();
         window.draw(maze_sprite);
-        
-        space_ship_sprite.setPosition(220, 365);
-        window.draw(space_ship_sprite);
-        
+ 
+        _player_ship->getShipSprite().setPosition(220, 365);
+        window.draw(_player_ship->getShipSprite());
+
         enemy_ship_sprite.setPosition(245, 150);
         window.draw(enemy_ship_sprite);
 
         shot_sprite.setPosition(204, 400);
         window.draw(shot_sprite);
-        
+       
         window.display();
     }
 }
 
-void Window::load_and_bind_textures()
-{
-    // Bind map textures    
+void Window::load_and_bind_textures() {
+    // Bind map textures     
     maze_tex.loadFromFile("sprites/maze/screen.png");
     maze_sprite.setTexture(maze_tex);
     maze_sprite.scale(1.5, 1.5);
@@ -71,10 +67,6 @@ void Window::load_and_bind_textures()
     shot_tex.loadFromFile("sprites/space_ships/shot.png");
     shot_sprite.setTexture(shot_tex);
     shot_sprite.scale(-0.5, -0.5);
-
-    space_ship_tex.loadFromFile("sprites/space_ships/space_ship1.png");
-    space_ship_sprite.setTexture(space_ship_tex);
-    space_ship_sprite.scale(-0.5, -0.5);
 
     enemy_ship_tex.loadFromFile("sprites/space_ships/enemy_space_ship1.png");
     enemy_ship_sprite.setTexture(enemy_ship_tex);

@@ -5,8 +5,9 @@
 #include <png.h>
 #include <SFML/Graphics.hpp>
 
-class Window
-{
+#include "PlayerShip.h"
+
+class Window {
 public:
     Window();
 
@@ -19,7 +20,6 @@ private:
 
 
 private:
-
     // Maze Texture
     sf::Texture maze_tex;
     sf::Sprite maze_sprite;
@@ -29,8 +29,7 @@ private:
     sf::Sprite shot_sprite;
     
     //Space ship texture
-    sf::Texture space_ship_tex;
-    sf::Sprite space_ship_sprite;
+    PlayerShip* _player_ship;
 
     //Enemy space ship texture
     sf::Texture enemy_ship_tex;

@@ -11,12 +11,15 @@ public:
     Ship();
     ~Ship();
 
-private:
-    sf::Texture ship_texture;
-    sf::Sprite ship_sprite;
+    sf::Sprite getShipSprite() { return _ship_sprite; }
+    void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
 
-    sf::Texture shot_texture;
-    sf::Sprite shot_sprite;
+protected:
+    sf::Texture _ship_texture;
+    sf::Sprite _ship_sprite;
+
+    sf::Texture _shot_texture;
+    sf::Sprite _shot_sprite;
 };
 
 #endif
