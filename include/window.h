@@ -6,10 +6,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "PlayerShip.h"
+#include "EnemyShip.h"
 
 class Window {
 public:
-    Window();
+    Window(PlayerShip* player, EnemyShip* enemy1);
 
     void run();
 
@@ -30,6 +31,9 @@ private:
     
     //Space ship texture
     PlayerShip* _player_ship;
+
+    EnemyShip* _enemies_list[4];
+    EnemyShip* _first_enemy;
 
     //Enemy space ship texture
     sf::Texture enemy_ship_tex;

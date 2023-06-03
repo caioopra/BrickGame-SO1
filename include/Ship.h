@@ -9,9 +9,8 @@
 class Ship {
 public:
     Ship();
-    ~Ship();
 
-    sf::Sprite getShipSprite() { return _ship_sprite; }
+    sf::Sprite* getShipSprite() { return &_ship_sprite; }
     void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
 
 protected:

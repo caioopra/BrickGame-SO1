@@ -1,8 +1,10 @@
-#include "window.h"
+#include "../include/window.h"
 
 
-Window::Window() {
-    this->_player_ship = new PlayerShip(1);
+Window::Window(PlayerShip* player, EnemyShip* enemy1) {
+    _player_ship = player;
+    _first_enemy = enemy1;
+
     load_and_bind_textures();
 }
 
@@ -45,11 +47,11 @@ void Window::run()
         window.clear();
         window.draw(maze_sprite);
  
-        _player_ship->getShipSprite().setPosition(220, 365);
-        window.draw(_player_ship->getShipSprite());
+        _player_ship->getShipSprite()->setPosition(300, 365);
+        window.draw(*_player_ship->getShipSprite());
 
-        enemy_ship_sprite.setPosition(245, 150);
-        window.draw(enemy_ship_sprite);
+        _first_enemy->getShipSprite()->setPosition(245, 150);
+        window.draw(*_first_enemy->getShipSprite());
 
         shot_sprite.setPosition(204, 400);
         window.draw(shot_sprite);
@@ -67,8 +69,4 @@ void Window::load_and_bind_textures() {
     shot_tex.loadFromFile("sprites/space_ships/shot.png");
     shot_sprite.setTexture(shot_tex);
     shot_sprite.scale(-0.5, -0.5);
-
-    enemy_ship_tex.loadFromFile("sprites/space_ships/enemy_space_ship1.png");
-    enemy_ship_sprite.setTexture(enemy_ship_tex);
-    enemy_ship_sprite.scale(-0.5, -0.5);
 }
