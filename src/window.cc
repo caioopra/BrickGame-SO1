@@ -1,6 +1,9 @@
 #include "../include/window.h"
 
 
+bool cima, baixo, direita, esquerda = false;
+
+
 Window::Window(PlayerShip* player, EnemyShip* enemy1) {
     _player_ship = player;
     _first_enemy = enemy1;
@@ -32,22 +35,66 @@ void Window::run()
             case sf::Event::KeyPressed:
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                     std::cout << "Keyboard esquerda!" << std::endl;
+                    esquerda = true;
+                    
                 } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                     std::cout << "Keyboard direita!" << std::endl;
+                    direita = true;
+                    
                 } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                     std::cout << "Keyboard para baixo!" << std::endl;
+                    baixo =true;
+                   
                 } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
                     std::cout << "Keyboard para cima!" << std::endl;
-                } else
+                    cima = true;
+                    
+                } else {
                     std::cout << "Keyboard pressed = " << event.key.code << std::endl;
+                }
+                break;
+
+            case sf::Event::KeyReleased:
+                if(event.key.code  == sf::Keyboard::Left) {
+                    std::cout << "Keyboard esquerda solto!" << std::endl;
+                    esquerda = false;
+                   
+                } else if(event.key.code  == sf::Keyboard::Right) {
+                    std::cout << "Keyboard direita solto!" << std::endl;
+                    direita = false;
+                    
+                } else if(event.key.code == sf::Keyboard::Down) {
+                    std::cout << "Keyboard para baixo solto!" << std::endl;
+                    baixo =false;
+                    
+                } else if(event.key.code == sf::Keyboard::Up) {
+                    std::cout << "Keyboard para cima solto!" << std::endl;
+                    cima = false;
+                    
+                } else {
+                    std::cout << "Keyboard pressed = " << event.key.code << std::endl;
+                }
                 break;
             }
         }
 
+        if (direita){
+            _player_ship->moveRight();
+        }
+        if (esquerda){
+            _player_ship->moveLeft();
+        }
+        if (cima){
+            _player_ship->moveUp();
+        }
+        if (baixo){
+            _player_ship->moveDown();            
+        }
+
         window.clear();
         window.draw(maze_sprite);
- 
-        _player_ship->getShipSprite()->setPosition(300, 365);
+
+        _player_ship->getShipSprite()->setPosition(_player_ship->getx(), _player_ship->gety());
         window.draw(*_player_ship->getShipSprite());
 
         _first_enemy->getShipSprite()->setPosition(245, 150);
