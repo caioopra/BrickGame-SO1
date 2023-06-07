@@ -7,12 +7,12 @@ Ship::Ship() {
 }
 
 void Ship::moveUp() {
-    _y += _velocidade;
+    _y -= _velocidade;
     _ship_sprite.setTexture(_cima);
 }
 
 void Ship::moveDown() {
-    _y -= _velocidade;
+    _y += _velocidade;
     _ship_sprite.setTexture(_baixo);
 }
 
