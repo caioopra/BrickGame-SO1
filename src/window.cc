@@ -82,16 +82,24 @@ void Window::run() {
         }
 
         if (direita){
+            if (_player_ship->getx() < 510){
             _player_ship->moveRight();
+            }
         }
         if (esquerda){
-            _player_ship->moveLeft();
+            if (_player_ship->getx() > 24){
+                _player_ship->moveLeft();
+            }
         }
         if (cima){
-            _player_ship->moveUp();
+            if (_player_ship->gety() > 24){
+                _player_ship->moveUp();
+            }
         }
         if (baixo){
-            _player_ship->moveDown();            
+            if (_player_ship->gety() < 510){
+            _player_ship->moveDown();       
+            }     
         }
 
         window.clear();
@@ -103,9 +111,13 @@ void Window::run() {
         _first_enemy->getShipSprite()->setPosition(245, 150);
         window.draw(*_first_enemy->getShipSprite());
 
-        shot_sprite.setPosition(204, 400);
+        shot_sprite.setPosition(566, 400);
         window.draw(shot_sprite);
        
+       if(_player_ship->getShipSprite()->getGlobalBounds().intersects(_first_enemy->getShipSprite()->getGlobalBounds())){
+            std::cout<< "colidiu" << std::endl;
+       }
+
         window.display();
     }
 }
