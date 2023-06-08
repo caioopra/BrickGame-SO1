@@ -13,6 +13,7 @@ public:
     int mgetId() { return id;}
 private:
     int id;
+    int vidas = 3;
 };
 
 

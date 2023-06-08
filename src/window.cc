@@ -1,5 +1,5 @@
 #include "../include/window.h"
-
+#include "../include/keyboard.h"
 
 bool cima, baixo, direita, esquerda = false;
 
@@ -15,14 +15,16 @@ void Window::draw_texture(unsigned int texture, int length, int height, float an
 {
 }
 
-void Window::run()
-{
+void Window::run() {
     sf::RenderWindow window(sf::VideoMode(900, 560), "SFML works!");
 
     //Link: https://www.sfml-dev.org/tutorials/2.5/window-events.php
     //https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php
     window.setKeyRepeatEnabled(false);
 
+    window.setFramerateLimit(10);
+
+    Keyboard keyboard;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -33,6 +35,7 @@ void Window::run()
             
             // key pressed
             case sf::Event::KeyPressed:
+                keyboard.run(event);
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                     std::cout << "Keyboard esquerda!" << std::endl;
                     esquerda = true;
