@@ -16,6 +16,8 @@ public:
 
     void draw_texture(unsigned int texture, int length, int height, float angle);
 
+    bool checkCollision(int x1, int y1, int x2, int y2, int width1, int height1, int width2, int height2);
+
 private:
     void load_and_bind_textures();
 
