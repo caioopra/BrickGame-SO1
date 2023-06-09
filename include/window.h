@@ -8,10 +8,11 @@
 #include "PlayerShip.h"
 #include "EnemyShip.h"
 #include "keyboard.h"
+#include "CollisionHandler.h"
 
 class Window {
 public:
-    Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard);
+    Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard, CollisionHandler* collision);
 
     void run();
 
@@ -37,7 +38,9 @@ private:
 
     EnemyShip* _enemies_list[4];
     EnemyShip* _first_enemy;
+    
     Keyboard* _keyboard;
+    CollisionHandler* _collision;
 
     //Enemy space ship texture
     sf::Texture enemy_ship_tex;

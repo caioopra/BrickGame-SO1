@@ -28,7 +28,8 @@ public:
     int getVelocidade() {return _velocidade; }
     int getx() { return _x; }
     int gety() {return _y;}
-
+    bool getMoving() { return _moving; }
+    Direction getDirection() { return _direction; }
     void changeDirection(Direction new_direction);
     
     void setMoving(bool moving);
