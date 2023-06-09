@@ -9,9 +9,17 @@ class Ship {
 public:
     Ship();
 
+    enum Direction {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT
+    };
+
     sf::Sprite* getShipSprite() { return &_ship_sprite; }
     void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
 
+    void move();
     void moveUp();
     void moveDown();
     void moveRight();
@@ -19,6 +27,10 @@ public:
 
     int getx() { return _x; }
     int gety() {return _y;}
+
+    void changeDirection(Direction new_direction);
+    
+    void setMoving(bool moving);
 
 
 protected:
@@ -29,7 +41,9 @@ protected:
     sf::Sprite _shot_sprite;
 
     sf::Texture _cima, _baixo, _esquerda, _direita;
-    
+    Direction _direction;    
+
+    bool _moving;
     int _velocidade;
 
     int _x, _y;

@@ -7,6 +7,8 @@ PlayerShip::PlayerShip(int param_id) : Ship() {
     _baixo.loadFromFile("sprites/space_ships/space_ship3.png");
     _direita.loadFromFile("sprites/space_ships/space_ship4.png");
 
+    _direction = UP;
+    _moving = false;
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(0.5, 0.5);
     

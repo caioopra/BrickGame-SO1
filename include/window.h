@@ -7,10 +7,11 @@
 
 #include "PlayerShip.h"
 #include "EnemyShip.h"
+#include "keyboard.h"
 
 class Window {
 public:
-    Window(PlayerShip* player, EnemyShip* enemy1);
+    Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard);
 
     void run();
 
@@ -34,6 +35,7 @@ private:
 
     EnemyShip* _enemies_list[4];
     EnemyShip* _first_enemy;
+    Keyboard* _keyboard;
 
     //Enemy space ship texture
     sf::Texture enemy_ship_tex;

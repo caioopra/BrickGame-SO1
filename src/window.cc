@@ -4,9 +4,10 @@
 bool cima, baixo, direita, esquerda = false;
 
 
-Window::Window(PlayerShip* player, EnemyShip* enemy1) {
+Window::Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard) {
     _player_ship = player;
     _first_enemy = enemy1;
+    _keyboard = keyboard;
 
     load_and_bind_textures();
 }
@@ -24,7 +25,6 @@ void Window::run() {
 
     window.setFramerateLimit(10);
 
-    Keyboard keyboard;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -35,67 +35,18 @@ void Window::run() {
             
             // key pressed
             case sf::Event::KeyPressed:
-                keyboard.run(event);
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                    std::cout << "Keyboard esquerda!" << std::endl;
-                    esquerda = true;
-                    
-                } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                    std::cout << "Keyboard direita!" << std::endl;
-                    direita = true;
-                    
-                } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                    std::cout << "Keyboard para baixo!" << std::endl;
-                    baixo =true;
-                   
-                } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    std::cout << "Keyboard para cima!" << std::endl;
-                    cima = true;
-                    
-                } else {
-                    std::cout << "Keyboard pressed = " << event.key.code << std::endl;
-                }
-                break;
+                _keyboard->receiveEvent(event);
+                
 
             case sf::Event::KeyReleased:
-                if(event.key.code  == sf::Keyboard::Left) {
-                    std::cout << "Keyboard esquerda solto!" << std::endl;
-                    esquerda = false;
-                   
-                } else if(event.key.code  == sf::Keyboard::Right) {
-                    std::cout << "Keyboard direita solto!" << std::endl;
-                    direita = false;
-                    
-                } else if(event.key.code == sf::Keyboard::Down) {
-                    std::cout << "Keyboard para baixo solto!" << std::endl;
-                    baixo =false;
-                    
-                } else if(event.key.code == sf::Keyboard::Up) {
-                    std::cout << "Keyboard para cima solto!" << std::endl;
-                    cima = false;
-                    
-                } else {
-                    std::cout << "Keyboard pressed = " << event.key.code << std::endl;
-                }
-                break;
+                _keyboard->receiveEvent(event);
             }
-        }
-
-        if (direita){
-            _player_ship->moveRight();
-        }
-        if (esquerda){
-            _player_ship->moveLeft();
-        }
-        if (cima){
-            _player_ship->moveUp();
-        }
-        if (baixo){
-            _player_ship->moveDown();            
         }
 
         window.clear();
         window.draw(maze_sprite);
+
+        _player_ship->move();
 
         _player_ship->getShipSprite()->setPosition(_player_ship->getx(), _player_ship->gety());
         window.draw(*_player_ship->getShipSprite());

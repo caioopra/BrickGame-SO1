@@ -2,12 +2,16 @@
 #define KEYBOARD_H
 
 #include <SFML/Graphics.hpp>
+#include "PlayerShip.h"
 
 class Keyboard {
 public:
-    Keyboard(){};  
+    Keyboard(PlayerShip* player);  
 
-    void run(sf::Event event);
+    void receiveEvent(sf::Event event);
+
+private:
+    PlayerShip* _player;
 };
 
 

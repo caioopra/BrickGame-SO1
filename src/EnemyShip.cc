@@ -6,6 +6,7 @@ EnemyShip::EnemyShip(int param_id) : Ship() {
     _esquerda.loadFromFile("sprites/space_ships/enemy_space_ship2.png");
     _baixo.loadFromFile("sprites/space_ships/enemy_space_ship3.png");
     _direita.loadFromFile("sprites/space_ships/enemy_space_ship4.png");
+    _direction = UP;
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(-0.5, -0.5);
     id = param_id;
