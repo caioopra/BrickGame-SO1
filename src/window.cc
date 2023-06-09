@@ -43,6 +43,46 @@ void Window::run() {
             }
         }
 
+       int x1, x2, y1, y2, width1, height1, width2, height2;
+       x1 = _player_ship->getShipSprite()->getGlobalBounds().left;
+       y1 = _player_ship->getShipSprite()->getGlobalBounds().top;
+       width1 = _player_ship->getShipSprite()->getGlobalBounds().width;
+       height1 = _player_ship->getShipSprite()->getGlobalBounds().height;
+       x2 = _first_enemy->getShipSprite()->getGlobalBounds().left;
+       y2 = _first_enemy->getShipSprite()->getGlobalBounds().top;
+       width2 = _first_enemy->getShipSprite()->getGlobalBounds().width;
+       height2 = _first_enemy->getShipSprite()->getGlobalBounds().height;
+
+
+        if (direita){
+            int next_X = _player_ship->getx() + _player_ship->getVelocidade();
+            bool colision = checkCollision(next_X, y1, x2, y2, width1, height1, width2, height2);
+            if (_player_ship->getx() < 510 && !colision){
+            _player_ship->moveRight();
+            }
+        }
+        if (esquerda){
+            int next_X = _player_ship->getx() - _player_ship->getVelocidade();
+            bool colision = checkCollision(next_X, y1, x2, y2, width1, height1, width2, height2);
+            if (_player_ship->getx() > 24 && !colision){
+                _player_ship->moveLeft();
+            }
+        }
+        if (cima){
+            int next_y = _player_ship->gety() - _player_ship->getVelocidade();
+            bool colision = checkCollision(x1, next_y, x2, y2, width1, height1, width2, height2);
+            if (_player_ship->gety() > 24 && !colision){
+                _player_ship->moveUp();
+            }
+        }
+        if (baixo){
+            int next_y = _player_ship->gety() + _player_ship->getVelocidade();
+            bool colision = checkCollision(x1, next_y, x2, y2, width1, height1, width2, height2);
+            if (_player_ship->gety() < 510 && !colision){
+            _player_ship->moveDown();       
+            }     
+        }
+
         window.clear();
         window.draw(maze_sprite);
 
@@ -54,9 +94,16 @@ void Window::run() {
         _first_enemy->getShipSprite()->setPosition(245, 150);
         window.draw(*_first_enemy->getShipSprite());
 
-        shot_sprite.setPosition(204, 400);
+        shot_sprite.setPosition(566, 400);
         window.draw(shot_sprite);
        
+
+
+       if(checkCollision(x1,y1,x2,y2,width1,height1,width2,height2)){
+        std::cout<< "colidiu  dois" << std::endl;
+       }
+
+
         window.display();
     }
 }
@@ -70,4 +117,19 @@ void Window::load_and_bind_textures() {
     shot_tex.loadFromFile("sprites/space_ships/shot.png");
     shot_sprite.setTexture(shot_tex);
     shot_sprite.scale(-0.5, -0.5);
+}
+
+
+bool Window::checkCollision(int x1, int y1, int x2, int y2, int width1, int height1, int width2, int height2) {
+
+    bool colisao_1 = ((y1 > y2) && (y1 < y2 + height2)) || ((y1 + height1 > y2) && (y1 + height1 < y2 + height2));
+    bool colisao_2 = ((x1 > x2) && (x1 < x2 + width2)) || ((x1 + width1 > x2) && (x1 + width1 < x2 + width2));
+
+    bool colisao = colisao_1 && colisao_2;
+
+    if (colisao){
+
+        return true;
+    }
+    return false;
 }

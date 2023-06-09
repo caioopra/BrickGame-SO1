@@ -25,6 +25,7 @@ public:
     void moveRight();
     void moveLeft();
 
+    int getVelocidade() {return _velocidade; }
     int getx() { return _x; }
     int gety() {return _y;}
 
