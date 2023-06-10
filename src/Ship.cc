@@ -1,4 +1,5 @@
 #include "../include/Ship.h"
+#include "../include/Shot.h"
 
 Ship::Ship() {
     _shot_texture.loadFromFile("sprites/space_ships/shot.png");
@@ -54,4 +55,8 @@ void Ship::changeDirection(Direction new_direction) {
 
 void Ship::setMoving(bool moving) {
     _moving = moving;
+}
+
+void Ship::createShot(){
+        player_shots.push_back( Shot(_x, _y, _direction));
 }

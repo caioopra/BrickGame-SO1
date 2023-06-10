@@ -19,7 +19,9 @@ void Keyboard::receiveEvent(sf::Event event) {
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             _player->changeDirection(Ship::DOWN);
             std::cout << "KEYBOARD down" << std::endl;
-        } else {
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            _player->createShot();
+        }else {
             std::cout << "KEYBOARD tecla " <<event.key.code << std::endl;
         }
     } else if (event.type == sf::Event::KeyReleased) {

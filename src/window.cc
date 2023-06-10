@@ -1,6 +1,8 @@
 #include "../include/window.h"
+#include <list>
+#include <iterator>
 
-bool cima, baixo, direita, esquerda = false;
+
 
 Window::Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard, CollisionHandler* collision) {
     _player_ship = player;
@@ -49,9 +51,19 @@ void Window::run() {
         width2 = _first_enemy->getShipSprite()->getGlobalBounds().width;
         height2 = _first_enemy->getShipSprite()->getGlobalBounds().height;
 
+
         window.clear();
         window.draw(maze_sprite);
+        
+        std::list<Shot>::iterator it;
+        std::list<Shot> g = _player_ship->getShots();
 
+
+
+        for (it = g.begin(); it != g.end(); ++it){
+            it->getShotSprite()->setPosition(it->getx(), it->gety());
+            window.draw(*it->getShotSprite());
+             }
         _player_ship->getShipSprite()->setPosition(_player_ship->getx(), _player_ship->gety());
         window.draw(*_player_ship->getShipSprite());
 

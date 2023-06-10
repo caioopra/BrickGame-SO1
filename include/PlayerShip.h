@@ -6,6 +6,7 @@
 #include <png.h>
 #include <SFML/Graphics.hpp>
 
+
 class PlayerShip : public Ship {
 public:
     PlayerShip(int id);  
