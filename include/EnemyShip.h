@@ -7,11 +7,9 @@
 
 class EnemyShip : public Ship {
 public:
-    EnemyShip(int id);
+    EnemyShip();
     ~EnemyShip() {};
-    int mgetId() { return id; }
 private:
-    int id;
 };
 
 #endif

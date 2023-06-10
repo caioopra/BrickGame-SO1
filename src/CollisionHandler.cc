@@ -66,3 +66,12 @@ bool CollisionHandler::checkCollision(int x1, int y1, int x2, int y2, int width1
 
     return false;
 }
+
+bool CollisionHandler::check(int x1, int y1, int x2, int y2, int width1, int height1, int width2, int height2) {
+    bool colisao_1 = ((y1 > y2) && (y1 < y2 + height2)) || ((y1 + height1 > y2) && (y1 + height1 < y2 + height2));
+    bool colisao_2 = ((x1 > x2) && (x1 < x2 + width2)) || ((x1 + width1 > x2) && (x1 + width1 < x2 + width2));
+
+    bool colisao = colisao_1 && colisao_2;
+
+    return colisao;
+}

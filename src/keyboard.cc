@@ -3,6 +3,7 @@
 
 Keyboard::Keyboard(PlayerShip* player) {
     _player = player;
+    can_shot = true;
 }
 
 void Keyboard::receiveEvent(sf::Event event) {
@@ -20,7 +21,10 @@ void Keyboard::receiveEvent(sf::Event event) {
             _player->changeDirection(Ship::DOWN);
             std::cout << "KEYBOARD down" << std::endl;
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            if(can_shot){
             _player->createShot();
+            can_shot = false;
+            }
         }else {
             std::cout << "KEYBOARD tecla " <<event.key.code << std::endl;
         }
@@ -37,6 +41,8 @@ void Keyboard::receiveEvent(sf::Event event) {
         } else if(event.key.code == sf::Keyboard::Up) { 
             std::cout << "KEYBOARD para cima solto!" << std::endl; 
             _player->setMoving(false);
+        } else if(event.key.code == sf::Keyboard::Space){
+            can_shot = true;
         } else { 
             std::cout << "KEYBOARD pressed = " << event.key.code << std::endl; 
         }

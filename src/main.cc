@@ -5,13 +5,9 @@
 #include "../include/CollisionHandler.h"
 
 int main(void) {
-    PlayerShip* player = new PlayerShip(1);
-    EnemyShip* enemy1 = new EnemyShip(2);
-    Keyboard* keyboard = new Keyboard(player);
-    CollisionHandler* collision = new CollisionHandler(player, enemy1);
-
-    Window* window = new Window(player, enemy1, keyboard, collision);
-
+    Game* game = new Game();
+    game->init();
+    Window* window = new Window(game);
     window->run();
 
     return 0;

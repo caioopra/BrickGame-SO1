@@ -4,7 +4,7 @@
 #include <iostream>
 #include <png.h>
 #include <SFML/Graphics.hpp>
-
+#include "../include/Game.h"
 #include "PlayerShip.h"
 #include "EnemyShip.h"
 #include "keyboard.h"
@@ -12,9 +12,11 @@
 
 class Window {
 public:
-    Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard, CollisionHandler* collision);
+    Window(Game* game);
 
     void run();
+
+    void update();
 
     void draw_texture(unsigned int texture, int length, int height, float angle);
 
@@ -25,6 +27,8 @@ private:
 
 
 private:
+    sf::RenderWindow _window;
+
     // Maze Texture
     sf::Texture maze_tex;
     sf::Sprite maze_sprite;
@@ -33,14 +37,8 @@ private:
     sf::Texture shot_tex;
     sf::Sprite shot_sprite;
     
-    //Space ship texture
+    Game* _game;
     PlayerShip* _player_ship;
-
-    EnemyShip* _enemies_list[4];
-    EnemyShip* _first_enemy;
-    
-    Keyboard* _keyboard;
-    CollisionHandler* _collision;
 
     //Enemy space ship texture
     sf::Texture enemy_ship_tex;

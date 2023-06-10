@@ -9,7 +9,7 @@ public:
     Keyboard(PlayerShip* player);  
 
     void receiveEvent(sf::Event event);
-
+    bool can_shot;
 private:
     PlayerShip* _player;
 };

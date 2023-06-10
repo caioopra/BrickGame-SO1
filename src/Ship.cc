@@ -58,5 +58,13 @@ void Ship::setMoving(bool moving) {
 }
 
 void Ship::createShot(){
-        player_shots.push_back( Shot(_x, _y, _direction));
+    if (_direction == UP){
+        player_shots.push_back(Shot(_x+31, _y, _direction));
+    } else if (_direction == DOWN){
+        player_shots.push_back(Shot(_x+31, _y+48, _direction));
+    }else if (_direction == RIGHT){
+        player_shots.push_back(Shot(_x+48, _y+31, _direction));
+    }else if (_direction == LEFT){
+        player_shots.push_back(Shot(_x, _y+31, _direction));
+    }
 }
