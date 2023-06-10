@@ -34,7 +34,7 @@ public:
     int gety() {return _y;}
     bool getMoving() { return _moving; }
     int getDirection() { return _direction; }
-    std::list <Shot> getShots() {return player_shots;}
+    std::list<Shot>& getShots() {return player_shots;}
     void changeDirection(Direction new_direction);
     
     void setMoving(bool moving);

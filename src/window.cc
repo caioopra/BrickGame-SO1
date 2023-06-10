@@ -1,8 +1,9 @@
 #include "../include/window.h"
 #include <list>
 #include <iterator>
+#include "../include/Shot.h"
 
-
+Shot tiro(20,20,1);
 
 Window::Window(PlayerShip* player, EnemyShip* enemy1, Keyboard* keyboard, CollisionHandler* collision) {
     _player_ship = player;
@@ -56,14 +57,18 @@ void Window::run() {
         window.draw(maze_sprite);
         
         std::list<Shot>::iterator it;
-        std::list<Shot> g = _player_ship->getShots();
+        std::list<Shot>& g = _player_ship->getShots();
 
-
+        tiro.move();
+        tiro.getShotSprite()->setPosition(tiro.getx(), tiro.gety());
+        window.draw(*tiro.getShotSprite());
 
         for (it = g.begin(); it != g.end(); ++it){
+            it->move();
             it->getShotSprite()->setPosition(it->getx(), it->gety());
             window.draw(*it->getShotSprite());
              }
+
         _player_ship->getShipSprite()->setPosition(_player_ship->getx(), _player_ship->gety());
         window.draw(*_player_ship->getShipSprite());
 

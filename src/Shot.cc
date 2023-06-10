@@ -29,7 +29,9 @@ void Shot::move() {
 }
 
 void Shot::moveUp() {
+    std::cout << _y << _velocidade <<std::endl;
     _y -= _velocidade;
+    std::cout << _y << _velocidade <<std::endl;
 }
 
 void Shot::moveDown() {
