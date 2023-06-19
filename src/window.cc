@@ -77,7 +77,9 @@ void Window::update(){
     for (it = g.begin(); it != g.end();){
         std::list<EnemyShip*>::iterator enemy_it;
         std::list<EnemyShip*> enemies = _game->getEnemies();    
+        std::cout<< "removfajwfjkwaer" << std::endl;
         for (enemy_it = enemies.begin(); enemy_it != enemies.end();){
+            std::cout<< "remover aquiiiiiiiiiii" << std::endl;
             std::cout << enemies.size() << std::endl;
             EnemyShip* my_enemy = *enemy_it;
             
@@ -94,7 +96,10 @@ void Window::update(){
             if (_game->getCollisionHandler()->check(x1, y1, x2, y2, width1, height1, width2, height2)){
                 std::cout<< "remover" << std::endl;
                 it = g.erase(it);
-                enemy_it = enemies.erase(enemy_it);
+                my_enemy = *enemies.erase(enemy_it);
+                std::cout << enemies.size() << std::endl;
+                ++it;
+                ++enemy_it;
             }else{
             it->move();
             it->getShotSprite()->setPosition(it->getx(), it->gety());
