@@ -100,16 +100,16 @@ void Window::update(){
                 std::cout << enemies.size() << std::endl;
                 ++it;
                 ++enemy_it;
-            }else{
-            it->move();
-            it->getShotSprite()->setPosition(it->getx(), it->gety());
-            _window.draw(*it->getShotSprite());
-            my_enemy->getShipSprite()->setPosition(my_enemy->getx(), my_enemy->gety());
-            _window.draw(*my_enemy->getShipSprite());
-            ++it;
-            ++enemy_it;
+            } else{
+                it->move();
+                it->getShotSprite()->setPosition(it->getx(), it->gety());
+                _window.draw(*it->getShotSprite());
+                my_enemy->getShipSprite()->setPosition(my_enemy->getx(), my_enemy->gety());
+                _window.draw(*my_enemy->getShipSprite());
+                ++it;
+                ++enemy_it;
             }
-    }   
+        }   
     }
 
     // std::list<EnemyShip*>::iterator enemy_it;

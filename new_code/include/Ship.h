@@ -5,7 +5,7 @@
 #include <png.h>
 #include <SFML/Graphics.hpp>
 #include <list>
-#include "../include/Shot.h"
+#include "Shot.h"
 
 class Ship {
 public:
@@ -21,7 +21,7 @@ public:
     sf::Sprite* getShipSprite() { return &_ship_sprite; }
     void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
 
-    void move()
+    void move();
     void moveUp();
     void moveDown();
     void moveRight();
