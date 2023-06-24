@@ -27,7 +27,6 @@ public:
     Game();
     ~Game();
 
-    int _positions[10];
 
     void initializeVariables();
     void initWindow();

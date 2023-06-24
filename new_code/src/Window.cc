@@ -1,4 +1,4 @@
-#include "../include/window.h"
+#include "../include/Window.h"
 #include "../include/Config.h"
 __BEGIN_API
 
