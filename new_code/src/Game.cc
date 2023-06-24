@@ -1,8 +1,8 @@
-#include <iostream>
-#include <cstdlib>
-#include <cstddef>
 #include "../include/Game.h"
 
+#include <cstddef>
+#include <cstdlib>
+#include <iostream>
 
 Game::Game() : _keyboard(&_player) {
     this->initWindow();
@@ -13,17 +13,21 @@ Game::Game() : _keyboard(&_player) {
 void Game::initializeVariables() {
 }
 
-void Game::initWindow(){
-    _window.create(sf::VideoMode(900,560), "Brick Game", sf::Style::Titlebar|sf::Style::Close);
+void Game::initWindow() {
+    _window.create(sf::VideoMode(900, 560), "Brick Game", sf::Style::Titlebar | sf::Style::Close);
 }
-
 
 Game::~Game() {
-    
 }
 
+void Game::run() {
+    while (running()) {
+        pollEvents();
+        update();
+    }
+}
 
-void Game::pollEvents(){
+void Game::pollEvents() {
     while (_window.pollEvent(_event)) {
         switch (_event.type) {
             case sf::Event::Closed:
@@ -31,20 +35,16 @@ void Game::pollEvents(){
                 break;
             case sf::Event::KeyPressed:
                 _keyboard.receiveEvent(_event);
-                break; 
+                break;
         }
     }
-
 }
 
-void Game::update(){
-    pollEvents();
+void Game::update() {
     render();
     moveAll();
 }
 
 void Game::moveAll() {
     _player.move();
-
 }
-

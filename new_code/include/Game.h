@@ -3,15 +3,16 @@
 #include <png.h>
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
+// #include <SFML/Network.hpp>
+// #include <SFML/System.hpp>
+// #include <SFML/Window.hpp>
 #include <iostream>
 
 #include "EnemyShip.h"
 #include "Keyboard.h"
 #include "PlayerShip.h"
 #include "Window.h"
+#include "Config.h"
 
 __BEGIN_API
 
@@ -27,6 +28,8 @@ class Game {
 
     Keyboard _keyboard;
 
+
+
    public:
     Game();
     ~Game();
@@ -36,7 +39,7 @@ class Game {
 
     bool running() { return _window.getWindow()->isOpen(); }
 
-    void teste();
+    void run();
     void moveAll();
     void pollEvents();
     void update();
