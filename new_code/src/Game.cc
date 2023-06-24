@@ -3,6 +3,7 @@
 #include <cstddef>
 #include "../include/Game.h"
 
+
 Game::Game() : _keyboard(&_player) {
     this->initWindow();
     initializeVariables();
