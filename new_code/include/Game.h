@@ -9,12 +9,12 @@
 #include "EnemyShip.h"
 #include "PlayerShip.h"
 #include "Keyboard.h" 
+#include "Window.h"
 
 class Game {
 private:
-    sf::RenderWindow _window;
     sf::Event _event;
-
+    Window _window;
     PlayerShip _player;
     EnemyShip _enemy1;
     EnemyShip _enemy2;
