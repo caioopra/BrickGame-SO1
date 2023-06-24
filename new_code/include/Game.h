@@ -1,18 +1,22 @@
 #ifndef GAME_H
 #define GAME_H
-#include <iostream>
 #include <png.h>
+
 #include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/Network.hpp>
+#include <iostream>
+
 #include "EnemyShip.h"
+#include "Keyboard.h"
 #include "PlayerShip.h"
-#include "Keyboard.h" 
 #include "Window.h"
 
+__BEGIN_API
+
 class Game {
-private:
+   private:
     sf::Event _event;
     Window _window;
     PlayerShip _player;
@@ -23,15 +27,14 @@ private:
 
     Keyboard _keyboard;
 
-public:
+   public:
     Game();
     ~Game();
-
 
     void initializeVariables();
     void initWindow();
 
-    bool running() { return _window.isOpen(); }
+    bool running() { return _window.getWindow()->isOpen(); }
 
     void teste();
     void moveAll();
@@ -39,5 +42,7 @@ public:
     void update();
     void render();
 };
+
+__END_API
 
 #endif

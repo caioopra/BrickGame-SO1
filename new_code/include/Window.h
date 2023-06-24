@@ -1,18 +1,20 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <iostream>
 #include <png.h>
+
 #include <SFML/Graphics.hpp>
-#include "threading/traits.h"
-#include "Config.h"
-#include <list>
+#include <iostream>
 #include <iterator>
+#include <list>
+
+#include "Config.h"
+#include "threading/traits.h"
 
 __BEGIN_API
 
 class Window {
-public:
+   public:
     Window();
     ~Window();
 
@@ -23,15 +25,16 @@ public:
     void render();
 
     sf::RenderWindow* getWindow() { return _window; }
-private:
+    bool getClosed() { return _closed; }
+
+   private:
     sf::RenderWindow* _window;
     sf::Texture _background_texture;
     sf::Sprite _background_sprite;
     static std::list<sf::Sprite> _spritesToDraw;
 
-    bool closed = false;
-    bool paused = false;
-
+    bool _closed = false;
+    bool _paused = false;
 };
 
 __END_API
