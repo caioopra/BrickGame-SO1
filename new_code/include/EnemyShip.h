@@ -1,15 +1,22 @@
-#ifndef EnemyShip_h
-#define EnemyShip_h
+#ifndef ENEMYSHIP_H
+#define ENEMYSHIP_H
 
-#include "Ship.h"
 #include <png.h>
+
 #include <SFML/Graphics.hpp>
 
+#include "Ship.h"
+#include "threading/traits.h"
+
+__BEGIN_API
 class EnemyShip : public Ship {
-public:
+   public:
     EnemyShip();
-    ~EnemyShip() {};
-private:
+
+   private:
+    int movimentation = 0;
 };
+
+__END_API
 
 #endif

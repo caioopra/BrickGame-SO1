@@ -1,13 +1,17 @@
 #ifndef Shot_h
 #define Shot_h
 
-#include <iostream>
 #include <png.h>
+
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+#include "threading/traits.h"
+
+__BEGIN_API
 
 class Shot {
-public:
-
+   public:
     enum Direction {
         UP,
         DOWN,
@@ -25,19 +29,18 @@ public:
     void moveRight();
     void moveLeft();
 
-    int getVelocidade() {return _velocidade; }
+    int getVelocidade() { return _velocidade; }
     int getDirection() { return _direction; }
     void changeDirection(Direction new_direction);
-  
 
-
-protected:
+   protected:
     sf::Texture _shot_texture;
     sf::Sprite _shot_sprite;
 
-    int _direction;    
+    int _direction;
 
     int _velocidade;
 };
 
+__END_API
 #endif

@@ -7,8 +7,10 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <memory>
 
 #include "Config.h"
+#include "GameHandler.h"
 #include "threading/traits.h"
 
 __BEGIN_API
@@ -16,7 +18,6 @@ __BEGIN_API
 class Window {
    public:
     Window();
-
 
     void run();
     void pause();
@@ -26,8 +27,12 @@ class Window {
     void update();
 
     bool getClosed() { return _closed; }
+    std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }
+    void setGameHandler(std::shared_ptr<GameHandler> ptr) { _gameHandler = ptr; }
 
    private:
+    std::shared_ptr<GameHandler> _gameHandler;
+
     sf::RenderWindow _window;
     sf::Texture _background_texture;
     sf::Sprite _background_sprite;

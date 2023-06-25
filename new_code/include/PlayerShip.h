@@ -1,19 +1,33 @@
-#ifndef PlayerShip_h
-#define PlayerShip_h
+#ifndef PLAYERSHIP_H
+#define PLAYERSHIP_H
 
-#include "Ship.h"
-#include <iostream>
 #include <png.h>
-#include <SFML/Graphics.hpp>
 
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <memory>
+
+#include "GameHandler.h"
+#include "Ship.h"
+#include "threading/traits.h"
+
+__BEGIN_API
 
 class PlayerShip : public Ship {
-public:
-    PlayerShip();  
-    ~PlayerShip() {};
-private:
+   public:
+    PlayerShip();
+    ~PlayerShip(){};
+
+    void run();
+
+    std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }
+    void setGameHandler(std::shared_ptr<GameHandler> ptr) { _gameHandler = ptr; }
+
+   private:
     int vidas = 3;
+    std::shared_ptr<GameHandler> _gameHandler;
 };
 
+__END_API
 
 #endif

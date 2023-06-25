@@ -16,6 +16,7 @@ class Debug;
 class Lists;
 class Main;
 class Semaphore;
+class GameHandler;
 
 // declaração da classe Traits
 template <typename T>

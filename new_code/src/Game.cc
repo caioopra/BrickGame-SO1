@@ -3,12 +3,18 @@
 
 __BEGIN_API
 
+// Game::Game() {
+//     std::cout << "INSTANCIADO: KEYBOARD" << std::endl;
+// }
+
 Game::Game() : _keyboard(&_player) {
     std::cout << "Game instanciated" << std::endl;
 }
 
 void Game::run() {
-    _window.run();
+    while(!(_config.isGameOver)){
+        
+    }
 }
 
 // void Game::pollEvents() {

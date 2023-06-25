@@ -1,9 +1,15 @@
 #include "../include/Keyboard.h"
 #include <SFML/Window/Keyboard.hpp>
 
+__BEGIN_API
+
 Keyboard::Keyboard(PlayerShip* player) {
     _player = player;
     can_shot = true;
+}
+
+void Keyboard::run() {
+    std::cout << "RUNNING: KEYBOARD" << std::endl;
 }
 
 void Keyboard::receiveEvent(sf::Event event) {
@@ -57,3 +63,5 @@ void Keyboard::receiveEvent(sf::Event event) {
         // }
     }
 }
+
+__END_API
