@@ -10,6 +10,7 @@ Keyboard::Keyboard() {
 
 void Keyboard::run() {
     std::cout << "RUNNING: KEYBOARD" << std::endl;
+    Thread::yield();
 }
 
 void Keyboard::receiveEvent(sf::Event event) {

@@ -10,21 +10,21 @@
 #include <memory>
 
 #include "EnemyShip.h"
+#include "Ship.h"
 #include "PlayerShip.h"
 #include "Shot.h"
 #include "threading/traits.h"
+#include "threading/thread.h"
 
 __BEGIN_API
 class GameHandler {
    private:
+
    public:
     GameHandler();
     void initialize();
 
-    std::list<EnemyShip> _enemyList;
-    std::list<Shot> _playerShots;
-    std::list<Shot> _enemyShots;
-    std::list<sf::Sprite> _toDrawSprites;
+    static std::shared_ptr<std::list<sf::Sprite>> _toDrawSprites;
 };
 
 __END_API

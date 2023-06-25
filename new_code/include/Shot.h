@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "threading/traits.h"
+#include "threading/thread.h"
 
 __BEGIN_API
 

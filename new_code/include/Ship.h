@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "Shot.h"
-
+#include "threading/thread.h"
 class Ship {
 public:
     Ship();

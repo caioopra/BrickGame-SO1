@@ -14,6 +14,7 @@
 #include "PlayerShip.h"
 #include "Window.h"
 #include "threading/traits.h"
+#include "threading/thread.h"
 #include "Config.h"
 
 __BEGIN_API

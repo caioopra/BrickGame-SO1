@@ -2,7 +2,7 @@
 #define COLLISIONHANDLER_H
 
 #include <memory>
-
+#include "threading/thread.h"
 #include "GameHandler.h"
 #include "threading/traits.h"
 

@@ -12,6 +12,7 @@
 #include "Config.h"
 #include "GameHandler.h"
 #include "threading/traits.h"
+#include "threading/thread.h"
 
 __BEGIN_API
 

@@ -21,6 +21,8 @@ void Window::load_and_bind_textures() {
 void Window::run() {    
     while(_window.isOpen()){
         update();
+        std::cout<< " WINDOW LOOP" << std::endl;
+        Thread::yield();
     }
 }
 
@@ -31,13 +33,16 @@ void Window::update() {
     _window.draw(_background_sprite);
 
     std::list<sf::Sprite>::iterator drawableIterator;
-    // for (drawableIterator = _spritesToDraw.begin(); drawableIterator != _spritesToDraw.end(); drawableIterator++) {
-    //     sf::Sprite my_sprite = *drawableIterator;
-    //     _window.draw(my_sprite);
-        
-    // }        
+    std::list<sf::Sprite> sprites = * getGameHandler()->_toDrawSprites;
+    std::cout<< sprites.size() <<std::endl;
 
+    for (drawableIterator = sprites.begin(); drawableIterator != sprites.end();drawableIterator++) {
+        sf::Sprite my_sprite = *drawableIterator;
+        _window.draw(my_sprite);
+        std::cout<< " WINDOW DRAW" << std::endl;
+    }        
     _window.display();
+    std::cout<< " WINDOW DISPLAY" << std::endl;
     
 }
 __END_API

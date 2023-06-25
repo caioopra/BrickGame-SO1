@@ -1,6 +1,6 @@
 #include "../include/PlayerShip.h"
 #include <iostream>
-
+#include "../include/Config.h"
 __BEGIN_API
 
 PlayerShip::PlayerShip() : Ship() {
@@ -13,10 +13,16 @@ PlayerShip::PlayerShip() : Ship() {
     _moving = false;
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(0.5, 0.5);
+    _ship_sprite.setPosition(200,200);
+    _gameHandler->_toDrawSprites->push_back(_ship_sprite);
 }
 
 void PlayerShip::run() {
+    while(!Config::isGameOver){
     std::cout << "RUNNING: PLAYER SHIP" << std::endl;
+    std::cout << "END: PLAYER SHIP" << std::endl;
+    Thread::yield();
+    }
 }
 
 __END_API

@@ -7,7 +7,9 @@ CollisionHandler::CollisionHandler() {
 }
 
 void CollisionHandler::run() {
+
     std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
+    Thread::yield();
 }
 
 __END_API

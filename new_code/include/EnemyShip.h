@@ -7,7 +7,7 @@
 
 #include "Ship.h"
 #include "threading/traits.h"
-
+#include "threading/thread.h"
 __BEGIN_API
 class EnemyShip : public Ship {
    public:

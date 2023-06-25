@@ -13,8 +13,8 @@ Game::Game(){
 
 void Game::run() {
     while(!(_config.isGameOver)){
-        _window.run();
-
+        // _window.run();
+        Thread::yield();
     }
 }
 

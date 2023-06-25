@@ -7,6 +7,7 @@
 #include "GameHandler.h"
 #include "PlayerShip.h"
 #include "threading/traits.h"
+#include "threading/thread.h"
 
 __BEGIN_API
 

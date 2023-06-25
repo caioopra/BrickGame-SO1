@@ -1,6 +1,6 @@
 #ifndef CONFIGS_H
 #define CONFIGS_H
-
+#include "threading/thread.h"
 #include "threading/traits.h"
 #include <iostream>   
 #include <ucontext.h>
