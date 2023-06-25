@@ -1,9 +1,11 @@
 #include <iostream>
 #include "../include/Game.h"
 
-int main(){
-    Game game;
-    game.run();
+__USING_API
+
+int main() {
+    Game* game = new Game();
+    game->run();
 
     return 0;
 }

@@ -16,19 +16,19 @@ __BEGIN_API
 class Window {
    public:
     Window();
-    ~Window();
+
 
     void run();
     void pause();
     void close();
-
+    void load_and_bind_textures();
     void render();
+    void update();
 
-    sf::RenderWindow* getWindow() { return _window; }
     bool getClosed() { return _closed; }
 
    private:
-    sf::RenderWindow* _window;
+    sf::RenderWindow _window;
     sf::Texture _background_texture;
     sf::Sprite _background_sprite;
     static std::list<sf::Sprite> _spritesToDraw;

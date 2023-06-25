@@ -1,6 +1,6 @@
 #include <iostream>
-#include "system.h"
-#include "thread.h"
+#include "../../include/threading/system.h"
+#include "../../include/threading/thread.h"
 
 __BEGIN_API
 

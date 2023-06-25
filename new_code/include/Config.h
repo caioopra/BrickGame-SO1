@@ -19,6 +19,7 @@ public:
     static int playableHeight;
     static int infoWidth;
     static int infoHeight;
+    static int max_lives;
 
 };
 

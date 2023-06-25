@@ -28,8 +28,6 @@ class Game {
 
     Keyboard _keyboard;
 
-
-
    public:
     Game();
     ~Game();
@@ -37,7 +35,7 @@ class Game {
     void initializeVariables();
     void initWindow();
 
-    bool running() { return _window.getWindow()->isOpen(); }
+    // bool running() { return _window.getWindow()->isOpen(); }
 
     void run();
     void moveAll();
