@@ -7,13 +7,14 @@ __BEGIN_API
 //     std::cout << "INSTANCIADO: KEYBOARD" << std::endl;
 // }
 
-Game::Game() : _keyboard(&_player) {
+Game::Game(){
     std::cout << "Game instanciated" << std::endl;
 }
 
 void Game::run() {
     while(!(_config.isGameOver)){
-        
+        _window.run();
+
     }
 }
 

@@ -23,12 +23,6 @@ class Game {
     std::shared_ptr<GameHandler> _gameHandler;
     sf::Event _event;
     Window _window;
-    PlayerShip _player;
-    EnemyShip _enemy1;
-    EnemyShip _enemy2;
-    EnemyShip _enemy3;
-    EnemyShip _enemy4;
-
     Keyboard _keyboard;
     Config _config;
 

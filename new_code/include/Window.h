@@ -36,7 +36,6 @@ class Window {
     sf::RenderWindow _window;
     sf::Texture _background_texture;
     sf::Sprite _background_sprite;
-    static std::list<sf::Sprite> _spritesToDraw;
 
     bool _closed = false;
     bool _paused = false;

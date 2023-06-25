@@ -16,7 +16,7 @@ Keyboard* MainHandler::keyboard;
 PlayerShip* MainHandler::playerShip;
 CollisionHandler* MainHandler::collisionHandler;
 
-void MainHandler::exec() {
+void MainHandler::exec(void * name) {
     gameHandler = std::make_shared<GameHandler>();
     gameHandler->initialize();
 
@@ -57,7 +57,7 @@ void MainHandler::windowExec() {
 }
 
 void MainHandler::keyboardExec() {
-    keyboard = new Keyboard(playerShip);
+    keyboard = new Keyboard();
     keyboard->setGameHandler(gameHandler);
     keyboard->run();
 

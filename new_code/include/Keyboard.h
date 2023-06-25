@@ -12,7 +12,7 @@ __BEGIN_API
 
 class Keyboard {
    public:
-    Keyboard(PlayerShip* ship);
+    Keyboard();
 
     void run();
 

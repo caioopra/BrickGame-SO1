@@ -3,9 +3,9 @@
 
 __BEGIN_API
 
-Keyboard::Keyboard(PlayerShip* player) {
-    _player = player;
-    can_shot = true;
+Keyboard::Keyboard() {
+    // _player = player;
+    // can_shot = true;
 }
 
 void Keyboard::run() {

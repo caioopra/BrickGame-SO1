@@ -20,7 +20,7 @@ class MainHandler {
     MainHandler(){}
     ~MainHandler(){}
 
-    static void exec();
+    static void exec(void * name);
 
     static void gameExec();
     static void windowExec();
