@@ -23,7 +23,7 @@ class Game {
    private:
     std::shared_ptr<GameHandler> _gameHandler;
     sf::Event _event;
-    Window _window;
+    // Window _window;
     Keyboard _keyboard;
     Config _config;
 

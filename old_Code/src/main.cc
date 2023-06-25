@@ -7,8 +7,8 @@
 int main(void) {
     Game* game = new Game();
     game->init();
-    Window* window = new Window(game);
-    window->run();
+    // Window* window = new Window(game);
+    // window->run();
 
     return 0;
 }

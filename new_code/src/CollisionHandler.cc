@@ -1,5 +1,6 @@
 #include "../include/CollisionHandler.h"
 
+
 __BEGIN_API
 
 CollisionHandler::CollisionHandler() {
