@@ -9,7 +9,7 @@
 #include "EnemyShip.h"
 #include "keyboard.h"
 #include "CollisionHandler.h"
-#include "Config.h"
+
 
 class Window {
 public:

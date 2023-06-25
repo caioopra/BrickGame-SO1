@@ -12,6 +12,26 @@ Window::Window() {
     _window.setFramerateLimit(60);
 
     load_and_bind_textures();
+    sf::Texture ship;
+    sf::Texture shot;
+    sf::Sprite ship_sprite;
+    sf::Sprite shot_sprite;
+    sf::Sprite shot2_sprite;
+    
+    ship.loadFromFile("sprites/space_ships/space_ship1.png");
+    shot.loadFromFile("sprites/space_ships/shot.png");
+
+    ship_sprite.setTexture(ship);
+    shot_sprite.setTexture(shot);
+    shot_sprite.setPosition(50,40);
+    ship_sprite.setPosition(200,200);
+    shot2_sprite.setTexture(shot);
+    shot2_sprite.setPosition(400,400);
+
+    _spritesToDraw.push_back(shot_sprite);
+    _spritesToDraw.push_back(ship_sprite);
+    _spritesToDraw.push_back(shot2_sprite);
+
 }
 
 void Window::load_and_bind_textures() {
@@ -28,19 +48,17 @@ void Window::run() {
 }
 
 void Window::update() {
+
     _window.clear();
 
     _window.draw(_background_sprite);
-    
-
 
     std::list<sf::Sprite>::iterator drawableIterator;
-    std::list<sf::Sprite> drawables = _spritesToDraw;
-    _window.draw(_background_sprite);
-    for (drawableIterator = drawables.begin(); drawableIterator != drawables.end(); drawableIterator++) {
-        _window.draw(*drawableIterator);
+    for (drawableIterator = _spritesToDraw.begin(); drawableIterator != _spritesToDraw.end(); drawableIterator++) {
+        sf::Sprite my_sprite = *drawableIterator;
+        _window.draw(my_sprite);
+        
     }        
-
 
     _window.display();
     
