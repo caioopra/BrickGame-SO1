@@ -9,12 +9,14 @@ Thread* MainHandler::windowThread;
 Thread* MainHandler::keyboardThread;
 Thread* MainHandler::playerThread;
 Thread* MainHandler::collisionHandlerThread;
+Thread* MainHandler::enemiesHandlerThread;
 
 Game* MainHandler::game;
 Window* MainHandler::window;
 Keyboard* MainHandler::keyboard;
-PlayerShip* MainHandler::playerShip;
+PlayerHandler* MainHandler::playerHandler;
 CollisionHandler* MainHandler::collisionHandler;
+EnemiesHandler* MainHandler::enemiesHandler;
 
 void MainHandler::exec(void * name) {
     gameHandler = std::make_shared<GameHandler>();
@@ -23,20 +25,21 @@ void MainHandler::exec(void * name) {
     gameLoopThread = new Thread(gameExec);
     playerThread = new Thread(playerExec);
     windowThread = new Thread(windowExec);
-    // keyboardThread = new Thread(keyboardExec);
-    // collisionHandlerThread = new Thread(collisionHandlerExec);
+    keyboardThread = new Thread(keyboardExec);
+    enemiesHandlerThread = new Thread(enemiesHandlerExec);
+    collisionHandlerThread = new Thread(collisionHandlerExec);
 
     gameLoopThread->join();
     windowThread->join();
     playerThread->join();
-    // collisionHandlerThread->join();
-    // keyboardThread->join();
+    keyboardThread->join();
+    collisionHandlerThread->join();
 
     delete gameLoopThread;
     delete windowThread;
-    // delete keyboardThread;
     delete playerThread;
-    // delete collisionHandlerThread;
+    delete keyboardThread;
+    delete collisionHandlerThread;
 }
 
 // gets the events and insert them into the gameHandler or deal with them as necessary
@@ -69,11 +72,19 @@ void MainHandler::keyboardExec() {
 
 void MainHandler::playerExec() {
     std::cout<< " PLAYER EXEC" << std::endl;
-    playerShip = new PlayerShip();
-    playerShip->setGameHandler(gameHandler);
-    playerShip->run();
+    playerHandler = new PlayerHandler();
+    playerHandler->setGameHandler(gameHandler);
+    std::cout<< " PLAYER EXEC RUN" << std::endl;
+    playerHandler->run();
+    delete playerHandler;
+}
 
-    delete playerShip;
+void MainHandler::enemiesHandlerExec() {
+    std::cout<< " ENEMIES EXEC" << std::endl;
+    enemiesHandler = new EnemiesHandler();
+    enemiesHandler->setGameHandler(gameHandler);
+    enemiesHandler->run();
+    delete enemiesHandler;
 }
 
 void MainHandler::collisionHandlerExec() {

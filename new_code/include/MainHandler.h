@@ -8,10 +8,11 @@
 #include "Keyboard.h"
 #include "Game.h"
 #include "CollisionHandler.h"
- 
+#include "PlayerHandler.h"
+#include "EnemiesHandler.h"
+
 #include "threading/thread.h"
 #include "threading/traits.h"
-
 
 __BEGIN_API
 
@@ -26,6 +27,7 @@ class MainHandler {
     static void windowExec();
     static void keyboardExec();
     static void playerExec();
+    static void enemiesHandlerExec();
     static void collisionHandlerExec();
 
     static std::shared_ptr<GameHandler> gameHandler;
@@ -34,12 +36,14 @@ class MainHandler {
     static Thread* windowThread;
     static Thread* keyboardThread;
     static Thread* playerThread;
+    static Thread* enemiesHandlerThread;
     static Thread* collisionHandlerThread;
 
+    static PlayerHandler* playerHandler;
+    static EnemiesHandler* enemiesHandler;
     static Game* game;
     static Window* window;
     static Keyboard* keyboard;
-    static PlayerShip* playerShip;
     static CollisionHandler* collisionHandler;
 };
 

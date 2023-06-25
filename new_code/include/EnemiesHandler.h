@@ -1,24 +1,26 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#ifndef ENEMIESHANDLER_H
+#define ENEMIESHANDLER_H
+
+#include <png.h>
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <memory>
 
 #include "GameHandler.h"
-#include "PlayerShip.h"
+#include "Ship.h"
 #include "threading/traits.h"
 #include "threading/thread.h"
+#include "Config.h"
 
 __BEGIN_API
 
-class Keyboard {
+class EnemiesHandler{
    public:
-    Keyboard();
+    EnemiesHandler();
+    ~EnemiesHandler(){};
 
     void run();
-
-    void receiveEvent(sf::Event event);
-    bool can_shot = true;
 
     std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }
     void setGameHandler(std::shared_ptr<GameHandler> ptr) { _gameHandler = ptr; }

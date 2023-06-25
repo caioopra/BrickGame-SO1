@@ -10,9 +10,9 @@
 #include <memory>
 
 #include "EnemyShip.h"
-#include "Ship.h"
 #include "PlayerShip.h"
 #include "Shot.h"
+#include "Keyboard.h"
 #include "threading/traits.h"
 #include "threading/thread.h"
 
@@ -24,7 +24,10 @@ class GameHandler {
     GameHandler();
     void initialize();
 
+    static std::shared_ptr<PlayerShip> _player;
+    static std::shared_ptr<std::list<EnemyShip>> _enemies;
     static std::shared_ptr<std::list<sf::Sprite>> _toDrawSprites;
+    static std::shared_ptr<std::list<sf::Event>> _eventList;
 };
 
 __END_API

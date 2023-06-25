@@ -22,7 +22,7 @@ __BEGIN_API
 class Game {
    private:
     std::shared_ptr<GameHandler> _gameHandler;
-    sf::Event _event;
+    // sf::Event _event;
     // Window _window;
     Keyboard _keyboard;
     Config _config;

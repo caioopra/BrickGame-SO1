@@ -19,10 +19,10 @@ class Shot {
         RIGHT,
         LEFT
     };
-    Shot(int x, int y, int direction);
+    Shot(int x, int y, int direction, sf::Sprite sprite);
 
     sf::Sprite* getShotSprite() { return &_shot_sprite; }
-    void setShipSprite(sf::Sprite sprite) { _shot_sprite = sprite; }
+    void setShotSprite(sf::Sprite sprite) { _shot_sprite = sprite; }
 
     void move();
     void moveUp();
@@ -35,6 +35,7 @@ class Shot {
     void changeDirection(Direction new_direction);
 
    protected:
+    int _x, _y;
     sf::Texture _shot_texture;
     sf::Sprite _shot_sprite;
 
