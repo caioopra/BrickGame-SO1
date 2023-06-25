@@ -52,13 +52,13 @@ void Window::update() {
     _window.draw(_background_sprite);
 
     
-    _window.draw(*_gameHandler->_player->getShipSprite());
+    _window.draw(_gameHandler->_player->_ship_sprite);
 
     std::list<Shot>::iterator shotsIterator;
     std::cout<< "AQUIIIIIII\n\n\n" << _gameHandler->_player->_shots.size()<< "\n\n\n\\n"<< std::endl;
     for (shotsIterator = _gameHandler->_player->_shots.begin(); shotsIterator != _gameHandler->_player->_shots.end();shotsIterator++) {
         Shot my_shot = *shotsIterator;
-        _window.draw(*my_shot.getShotSprite());
+        _window.draw(my_shot.getShotSprite());
         std::cout<< " WINDOW DRAW SHOT" << std::endl;
     }
     

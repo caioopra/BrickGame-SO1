@@ -23,7 +23,7 @@ public:
     };
 
     sf::Sprite* getShipSprite() { return &_ship_sprite; }
-    void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
+    // void setShipSprite(sf::Sprite sprite) { _ship_sprite = sprite; }
 
     void move();
     void moveUp();
@@ -42,20 +42,18 @@ public:
     void setMoving(bool moving);
 
 
-    std::list<Shot>& _shots;
-protected:
+    std::list<Shot> _shots;
     sf::Sprite _ship_sprite;
+    int _x = 200;
+    int _y = 200;
     sf::Texture _cima, _baixo, _esquerda, _direita;
     Direction _direction;  
-
-    sf::Texture _shot_texture;
-    sf::Sprite _shot_sprite;
       
     bool _moving;
     int _velocidade;
+protected:
 
-    int _x = 200;
-    int _y = 200;
+
 
 };
 

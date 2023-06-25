@@ -13,13 +13,14 @@ PlayerShip::PlayerShip() : Ship() {
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(0.5, 0.5);
 
+    _x = 200;
+    _y = 200;
 }
 
 void PlayerShip::run() {
     std::cout << "Player running\n\n" << std::endl;
     move();
-    _ship_sprite.setPosition(_x, _y);
-    // _ship_sprite.setPosition(_x,_y);
+    _ship_sprite.setPosition(_x,_y);
     // _gameHandler->_toDrawSprites->push_back(_ship_sprite);
 
 }

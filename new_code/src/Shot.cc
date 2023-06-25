@@ -2,8 +2,11 @@
 
 __BEGIN_API
 
-Shot::Shot(int x, int y, int direction, sf::Sprite sprite) {
-    setShotSprite(sprite);
+Shot::Shot(int x, int y, int direction) {
+    _shot_texture.loadFromFile("sprites/space_ships/shot.png");
+    _shot_sprite.setTexture(_shot_texture);
+    _shot_sprite.scale(0.5, 0.5);
+
     _velocidade = 20;
     _direction = direction;
 

@@ -19,9 +19,9 @@ class Shot {
         RIGHT,
         LEFT
     };
-    Shot(int x, int y, int direction, sf::Sprite sprite);
+    Shot(int x, int y, int direction);
 
-    sf::Sprite* getShotSprite() { return &_shot_sprite; }
+    sf::Sprite getShotSprite() { return _shot_sprite; }
     void setShotSprite(sf::Sprite sprite) { _shot_sprite = sprite; }
 
     void move();
