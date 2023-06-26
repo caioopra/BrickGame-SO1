@@ -1,7 +1,10 @@
 #include "../include/Keyboard.h"
 #include <SFML/Window/Keyboard.hpp>
 #include "../include/Config.h"
+#include "../include/TimeHandler.h"
 __BEGIN_API
+
+TimeHandler timeHandler = TimeHandler();
 
 Keyboard::Keyboard() {
 
@@ -27,22 +30,22 @@ void Keyboard::receiveEvent(sf::Event event) {
     if (event.type == sf::Event::KeyPressed) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             _gameHandler->_player->changeDirection(Ship::LEFT);
-            std::cout << "KEYBOARD left" << std::endl;
+            // std::cout << "KEYBOARD left" << std::endl;
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             _gameHandler->_player->changeDirection(Ship::RIGHT);
-            std::cout << "KEYBOARD right" << std::endl;
+            // std::cout << "KEYBOARD right" << std::endl;
         } 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             _gameHandler->_player->changeDirection(Ship::UP);
-            std::cout << "KEYBOARD up" << std::endl;
+            // std::cout << "KEYBOARD up" << std::endl;
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             _gameHandler->_player->changeDirection(Ship::DOWN);
-            std::cout << "KEYBOARD down" << std::endl;
+            // std::cout << "KEYBOARD down" << std::endl;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-            std::cout << "KEYBOARD atirando" << std::endl;
-            if (can_shot){
+            // std::cout << "KEYBOARD atirando" << std::endl;
+            if (timeHandler.playerCanShot()){
                 _gameHandler->_player->createShot();
                 can_shot = false;
             }
@@ -67,7 +70,7 @@ void Keyboard::receiveEvent(sf::Event event) {
             _gameHandler->_player->setMoving(false);
         }
         if(event.key.code == sf::Keyboard::Space){
-            std::cout << "KEYBOARD espaco solto!" << std::endl; 
+            // std::cout << "KEYBOARD espaco solto!" << std::endl; 
             can_shot = true;
         } 
         

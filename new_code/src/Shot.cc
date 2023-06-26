@@ -21,7 +21,6 @@ Shot::Shot(int x, int y, int direction)
 
 void Shot::move()
 {
-    std::cout << _x << " " << _y << std::endl;
     switch (_direction) {
         case UP:
             moveUp();
@@ -38,7 +37,6 @@ void Shot::move()
     }
 
     _shot_sprite.setPosition(_x, _y);
-    std::cout << _x << " " << _y << std::endl;
 }
 
 void Shot::moveUp()
