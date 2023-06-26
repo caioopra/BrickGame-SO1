@@ -63,7 +63,6 @@ void Window::update() {
         shot->move();
         _window.draw(shot->getShotSprite());
     }
-
     
 
     _window.display();

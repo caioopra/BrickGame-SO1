@@ -19,8 +19,8 @@ GameHandler::GameHandler() {
 
     for (int i = 0; i < 4; i++) {
         EnemyShip* enemy = new EnemyShip();
-        enemy->_x = i%2 * 500;
-        enemy->_y = i > 1 ? 0 : 500;
+        enemy->_x = i%2 * 400;
+        enemy->_y = i > 1 ? 0 : 400;
         enemy->getShipSprite()->setPosition(enemy->_x, enemy->_y);
         _enemies->push_back(enemy);
     }
