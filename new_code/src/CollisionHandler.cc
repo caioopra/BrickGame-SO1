@@ -11,7 +11,9 @@ void CollisionHandler::run() {
     while(!Config::isGameOver){
         checkBorderCollision();
         checkBorderCollisionShot();
-        checkCollisionBullet();
+        checkBorderCollisionEnemyShot();
+        checkCollisionBulletEnemy();
+        checkCollisionBulletPlayer();
 
 
         std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
@@ -75,7 +77,7 @@ void CollisionHandler::checkBorderCollisionShot() {
     }
 }
 
-bool CollisionHandler::checkCollisionBullet() {
+void CollisionHandler::checkCollisionBulletEnemy() {
     std::list<Shot*>::iterator playerShot;
     for (playerShot = _gameHandler->_player->_shots->begin(); playerShot != _gameHandler->_player->_shots->end();) {
         Shot* shot = *playerShot;
@@ -93,6 +95,62 @@ bool CollisionHandler::checkCollisionBullet() {
     }
 }
 
+void CollisionHandler::checkCollisionBulletPlayer(){
+    std::list<EnemyShip*>::iterator enemy;
+    for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
+        EnemyShip* myEnemy= *enemy;
+        std::list<Shot*>::iterator enemyShot;
+        for (enemyShot = myEnemy->_shots->begin(); enemyShot != myEnemy->_shots->end();) {
+            Shot* shot = *enemyShot;
+            if (shot->_shot_sprite.getGlobalBounds().intersects(_gameHandler->_player->getShipSprite()->getGlobalBounds())) {
+                enemyShot = myEnemy->_shots->erase(enemyShot);
+
+                //TODO: ADICIONAR LOGICA DE PERDER VIDA
+        }
+        enemyShot++;
+    }
+    enemy++;
+    }
+}
+
+void CollisionHandler::checkBorderCollisionEnemyShot() {
+    std::list<EnemyShip*>::iterator enemy;
+    for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
+        EnemyShip* myEnemy= *enemy;
+        std::list<Shot*>::iterator enemyShot;
+        for (enemyShot = myEnemy->_shots->begin(); enemyShot != myEnemy->_shots->end();) {
+            Shot* shot = *enemyShot;
+            
+            if (shot->getDirection() == Shot::UP) {
+                if (shot->_y - shot->_velocidade > 0) { 
+                    shot->move();
+                } else {
+                    enemyShot = myEnemy->_shots->erase(enemyShot);
+                }
+            } else if (shot->getDirection() == Shot::DOWN) {
+                if (shot->_y + shot->_velocidade < 512) { 
+                    shot->move();
+                } else {
+                    enemyShot = myEnemy->_shots->erase(enemyShot);
+                }
+            } else if (shot->getDirection() == Shot::RIGHT) {
+                if (shot->_x + shot->_velocidade < 512) { 
+                    shot->move();
+                } else {
+                    enemyShot = myEnemy->_shots->erase(enemyShot);
+                }
+            } else {
+                if (shot->_x - shot->_velocidade > 0) {
+                    shot->move();
+                } else {
+                    enemyShot = myEnemy->_shots->erase(enemyShot);
+                }
+            }
+            enemyShot++;
+        }
+        enemy++;
+    }
+}
 
 
 
