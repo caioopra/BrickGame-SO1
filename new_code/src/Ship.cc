@@ -9,6 +9,11 @@ Ship::Ship() {
     _velocidade = 20;
 }
 
+// TODO: deletar tiros da lista
+Ship::~Ship() {
+    delete _shots;
+}
+
 void Ship::move() {
     if (_moving) {
         switch(_direction) {

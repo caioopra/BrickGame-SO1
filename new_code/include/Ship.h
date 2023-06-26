@@ -33,7 +33,7 @@ public:
     void createShot();
 
 
-    int getVelocidade() {return _velocidade; }
+    int getVelocidade() { return _velocidade; }
     bool getMoving() { return _moving; }
     int getDirection() { return _direction; }
     // std::list<Shot>& getShots() { return _shots; }
