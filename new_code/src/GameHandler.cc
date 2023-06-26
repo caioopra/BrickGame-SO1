@@ -35,6 +35,7 @@ GameHandler::GameHandler() {
 }
 
 void GameHandler::increaseScore() {
+    std::cout << "GAME HANDLER INCREASING SCORE" << std::endl;
     _score += 100;
     increaseAmountKilled();
 }
