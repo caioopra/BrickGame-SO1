@@ -5,7 +5,7 @@ __BEGIN_API
 Shot::Shot(int x, int y, int direction)
 {
     if (!_shot_texture.loadFromFile("sprites/space_ships/shot.png")) {
-        std::cout << "fahwbfuybwaf" << std::endl;
+        std::cout << "Erro ao carregar textura do tiro" << std::endl;
     }
 
     _shot_sprite.setTexture(_shot_texture);

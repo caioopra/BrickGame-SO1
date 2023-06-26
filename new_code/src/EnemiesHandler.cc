@@ -11,7 +11,7 @@ EnemiesHandler::EnemiesHandler() {
 
 void EnemiesHandler::run() {
     while (!Config::isGameOver) {
-        std::cout << "RUNNING: ENEMIES HANDLER" << std::endl;
+        // std::cout << "RUNNING: ENEMIES HANDLER" << std::endl;
         moveEnemies();
 
         std::list<EnemyShip*>::iterator enemy;
@@ -52,7 +52,7 @@ void EnemiesHandler::colisionEnemies() {
                     colisao_2 = ((x1 > x2) && (x1 < x2 + width2)) || ((x1 + width1 > x2) && (x1 + width1 < x2 + width2));
                     colisao = colisao_1 && colisao_2;
 
-                    std::cout << colisao << std::endl;
+                    // std::cout << colisao << std::endl;
 
 
                     if (colisao && (enemy!= enemy_2)){

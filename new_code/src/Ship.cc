@@ -15,7 +15,6 @@ Ship::~Ship() {
 }
 
 void Ship::move() {
-    std::cout << _y << " " << _x << std::endl;
     if (_moving) {
         switch(_direction) {
             case UP:
@@ -32,7 +31,6 @@ void Ship::move() {
                 break;
         }
     }
-    std::cout << _y << " " << _x << std::endl;
 }
 
 void Ship::moveUp() {

@@ -18,7 +18,7 @@ PlayerShip::PlayerShip() : Ship() {
 }
 
 void PlayerShip::run() {
-    std::cout << "Player running\n\n" << std::endl;
+    // std::cout << "Player running" << std::endl;
     // move();
     _ship_sprite.setPosition(_x,_y);
 

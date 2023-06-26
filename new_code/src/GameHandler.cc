@@ -42,7 +42,7 @@ void GameHandler::increaseScore() {
 
 void GameHandler::increaseAmountKilled() {
     _amount_killed += 1;
-    if (_amount_killed == 4 && _speed < 3) {
+    if (_amount_killed == 1 && _speed < 3) {
         _amount_killed = 0;
         _speed++;
 

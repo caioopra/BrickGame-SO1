@@ -3,10 +3,6 @@
 
 __BEGIN_API
 
-// Game::Game() {
-//     std::cout << "INSTANCIADO: KEYBOARD" << std::endl;
-// }
-
 Game::Game(){
     std::cout << "Game instanciated" << std::endl;
 }
