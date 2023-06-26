@@ -45,6 +45,12 @@ void GameHandler::increaseAmountKilled() {
     if (_amount_killed == 4 && _speed < 3) {
         _amount_killed = 0;
         _speed++;
+
+        std::list<EnemyShip*>::iterator enemy;
+        for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
+            EnemyShip* enemyShip = *enemy;
+            enemyShip->_velocidade++;
+        }
     }
 }
 
