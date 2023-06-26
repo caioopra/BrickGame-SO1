@@ -26,7 +26,7 @@ struct Traits {
 
 template <>
 struct Traits<CPU> {
-    static const unsigned int STACK_SIZE = 0x64000;
+    static const unsigned int STACK_SIZE = 0x640000;
     static const bool debugged = false;
 };
 template <>
