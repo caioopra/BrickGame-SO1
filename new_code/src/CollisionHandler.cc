@@ -11,6 +11,7 @@ void CollisionHandler::run() {
     while(!Config::isGameOver){
         checkBorderCollision();
         checkBorderCollisionShot();
+        checkCollisionBullet();
 
 
         std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
@@ -74,12 +75,22 @@ void CollisionHandler::checkBorderCollisionShot() {
     }
 }
 
-bool CollisionHandler::checkCollisionBullet(EnemyShip* enemy, std::list<Shot*>* bullets) {
-    
-}
-
-bool CollisionHandler::checkCollisionBullet(PlayerShip* enemy, std::list<Shot*>* bullets) {
-
+bool CollisionHandler::checkCollisionBullet() {
+    std::list<Shot*>::iterator playerShot;
+    for (playerShot = _gameHandler->_player->_shots->begin(); playerShot != _gameHandler->_player->_shots->end();) {
+        Shot* shot = *playerShot;
+        std::list<EnemyShip*>::iterator enemy;
+        for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
+            EnemyShip* myEnemy= *enemy;
+            if (shot->_shot_sprite.getGlobalBounds().intersects(myEnemy->getShipSprite()->getGlobalBounds())) {
+                playerShot = _gameHandler->_player->_shots->erase(playerShot);
+                enemy = _gameHandler->_enemies->erase(enemy);
+                std::cout << "COLISÃO ENTRE INIMIGO E BALA" << std::endl;
+            }
+            enemy++;
+        }   
+        playerShot++;
+    }
 }
 
 

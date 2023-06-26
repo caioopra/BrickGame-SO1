@@ -25,8 +25,7 @@ class CollisionHandler {
 
     void checkBorderCollision();
     void checkBorderCollisionShot();
-    bool checkCollisionBullet(EnemyShip* enemy, std::list<Shot*>* bullets);
-    bool checkCollisionBullet(PlayerShip* enemy, std::list<Shot*>* bullets);
+    bool checkCollisionBullet();
 
     int getFuturePosition();
 
