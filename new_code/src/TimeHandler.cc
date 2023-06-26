@@ -48,15 +48,15 @@ bool TimeHandler::enemyCanShot() {
 
 bool TimeHandler::enemyCanMove() {
     sf::Time newTime = _enemiesMoveClock->getElapsedTime();
-    if (newTime.asMilliseconds()>60){
+    std::cout << newTime.asMilliseconds() << std::endl;
+    if (newTime.asMilliseconds()>500){
         contadorMove++;
         if(contador == 3){
-            _enemiesMoveClock->restart();
+            newTime = _enemiesMoveClock->restart();
             contadorMove=0;
         }
         return true;
     }else{
-
         return false;
     }
 }

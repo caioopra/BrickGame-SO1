@@ -11,6 +11,7 @@ std::shared_ptr<PlayerShip> GameHandler::_player;
 std::shared_ptr<std::list<EnemyShip*>> GameHandler::_enemies;
 int GameHandler::_score;
 int GameHandler::_speed;
+int GameHandler::_amount_killed;
 
 GameHandler::GameHandler() {
     std::cout << "GAME HANDLER created" << std::endl;
@@ -21,6 +22,7 @@ GameHandler::GameHandler() {
 
     _score = 0;
     _speed = 1;
+    _amount_killed = 0;
 
     for (int i = 0; i < 4; i++) {
         EnemyShip* enemy = new EnemyShip();
@@ -30,6 +32,19 @@ GameHandler::GameHandler() {
         _enemies->push_back(enemy);
     }
     
+}
+
+void GameHandler::increaseScore() {
+    _score += 100;
+    increaseAmountKilled();
+}
+
+void GameHandler::increaseAmountKilled() {
+    _amount_killed += 1;
+    if (_amount_killed == 4 && _speed < 3) {
+        _amount_killed = 0;
+        _speed++;
+    }
 }
 
 void GameHandler::initialize() {

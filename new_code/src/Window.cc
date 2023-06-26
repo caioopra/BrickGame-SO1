@@ -75,6 +75,9 @@ void Window::update() {
         _window.draw(shot->getShotSprite());
     }
     
+    _score_text.setString("Score: " + std::to_string(_gameHandler->_score));
+    _speed_text.setString("Velocidade: " + std::to_string(_gameHandler->_speed));
+
     _window.draw(_score_text);
     _window.draw(_speed_text);
 
