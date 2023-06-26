@@ -35,6 +35,8 @@ class GameHandler {
 
     static void increaseScore();
     static void increaseAmountKilled();
+    static void pause();
+    static void unpause();
 };
 
 __END_API

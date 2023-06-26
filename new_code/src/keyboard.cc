@@ -45,9 +45,6 @@ void Keyboard::receiveEvent(sf::Event event) {
                 can_shot = false;
             }
         }
-        // }else {
-        //     std::cout << "KEYBOARD tecla " <<event.key.code << std::endl;
-        // }
     } else if (event.type == sf::Event::KeyReleased) {
         if(event.key.code  == sf::Keyboard::Left) {            
             _gameHandler->_player->setMoving(false);

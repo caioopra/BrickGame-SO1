@@ -1,18 +1,20 @@
 #include "../include/Window.h"
-#include "../include/Config.h"
-#include <list>
+
 #include <iostream>
+#include <list>
+
+#include "../include/Config.h"
 __BEGIN_API
 
-Window::Window() {   
-    _window.create(sf::VideoMode(Config::width,Config::height), "Brick Game", sf::Style::Titlebar|sf::Style::Close);
+Window::Window() {
+    _window.create(sf::VideoMode(Config::width, Config::height), "Brick Game", sf::Style::Titlebar | sf::Style::Close);
     _window.setKeyRepeatEnabled(true);
     _window.setFramerateLimit(60);
     load_and_bind_textures();
 }
 
 void Window::load_and_bind_textures() {
-    // Bind map textures 
+    // Bind map textures
     _background_texture.loadFromFile("sprites/maze/screen.png");
     _background_sprite.setTexture(_background_texture);
     _background_sprite.scale(1.5, 1.5);
@@ -27,35 +29,52 @@ void Window::load_and_bind_textures() {
     _speed_text.setString("Velocidade: " + std::to_string(_gameHandler->_speed));
     _speed_text.setCharacterSize(27);
     _speed_text.move(580, 85);
+
+    _lives_text.setFont(_font);
+    _lives_text.setString("N. vidas: 3");
+    _lives_text.setCharacterSize(27);
+    _lives_text.move(580, 125);
 }
 
-void Window::run() {    
-    while(_window.isOpen()){
+void Window::run() {
+    while (_window.isOpen()) {
         sf::Event event;
         while (_window.pollEvent(event)) {
             switch (event.type) {
                 case sf::Event::Closed:
                     _window.close();
                     break;
-
                 case sf::Event::KeyPressed:
                     _gameHandler->_eventList->push_back(event);
+                    if (event.key.code == sf::Keyboard::P) {
+                        std::cout << "GAME BEING PAUSED " << std::endl;
+                        if (_paused) {
+                            _gameHandler->unpause();
+                        } else {
+                            _gameHandler->pause();
+                            drawPauseScreen();
+                        }
+                        _paused = !_paused;                
+                    }
                     break;
                 case sf::Event::KeyReleased:
                     _gameHandler->_eventList->push_back(event);
                     break;
-
             }
         }
-        update();
 
-        std::cout<< " WINDOW LOOP" << std::endl;
+        if (!_paused) {
+            update();
+        }
+        _window.display();
+
+
+        // std::cout<< " WINDOW LOOP" << std::endl;
         Thread::yield();
     }
 }
 
 void Window::update() {
-
     _window.clear();
 
     _window.draw(_background_sprite);
@@ -74,14 +93,26 @@ void Window::update() {
         shot->move();
         _window.draw(shot->getShotSprite());
     }
-    
+
     _score_text.setString("Score: " + std::to_string(_gameHandler->_score));
     _speed_text.setString("Velocidade: " + std::to_string(_gameHandler->_speed));
 
     _window.draw(_score_text);
     _window.draw(_speed_text);
+    _window.draw(_lives_text);
 
-    _window.display();
-    std::cout<< " WINDOW DISPLAY" << std::endl;    
+    // _window.display();
+    // std::cout<< " WINDOW DISPLAY" << std::endl;
 }
+
+void Window::drawPauseScreen() {
+    std::cout << "DRAWING PAUSE SCREEN " << std::endl;
+    sf::Text text;
+    text.setFont(_font);
+    text.setString("GAME PAUSED! PRESS P TO RESUME");
+    text.setCharacterSize(40);
+    text.move(30, 240);
+    _window.draw(text);
+}
+
 __END_API

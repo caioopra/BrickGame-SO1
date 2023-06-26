@@ -14,7 +14,7 @@ void CollisionHandler::run() {
         checkBorderCollisionEnemyShot();
         checkCollisionBulletEnemy();
         checkCollisionBulletPlayer();
-        std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
+        // std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
         Thread::yield();
     }
 }

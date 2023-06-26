@@ -26,6 +26,7 @@ class Window {
     void load_and_bind_textures();
     void render();
     void update();
+    void drawPauseScreen();
 
     bool getClosed() { return _closed; }
     std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }
@@ -41,6 +42,7 @@ class Window {
     sf::Font _font;
     sf::Text _score_text;
     sf::Text _speed_text;
+    sf::Text _lives_text;
 
     bool _closed = false;
     bool _paused = false;

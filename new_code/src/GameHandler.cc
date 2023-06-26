@@ -42,7 +42,7 @@ void GameHandler::increaseScore() {
 
 void GameHandler::increaseAmountKilled() {
     _amount_killed += 1;
-    if (_amount_killed == 1 && _speed < 3) {
+    if (_amount_killed == 4 && _speed < 3) {
         _amount_killed = 0;
         _speed++;
 
@@ -51,6 +51,26 @@ void GameHandler::increaseAmountKilled() {
             EnemyShip* enemyShip = *enemy;
             enemyShip->_velocidade++;
         }
+    }
+}
+
+void GameHandler::pause() {
+    _player->_moving = false;
+
+    std::list<EnemyShip*>::iterator enemy;
+    for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
+        EnemyShip* enemyShip = *enemy;
+        enemyShip->_moving = false;
+    }
+}
+
+void GameHandler::unpause() {
+    _player->_moving = true;
+
+    std::list<EnemyShip*>::iterator enemy;
+    for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
+        EnemyShip* enemyShip = *enemy;
+        enemyShip->_moving = true;
     }
 }
 
