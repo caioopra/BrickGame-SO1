@@ -12,6 +12,7 @@ __BEGIN_API
 class EnemyShip : public Ship {
    public:
     EnemyShip();
+    void moveAlgorithm();
 
    private:
     int movimentation = 0;

@@ -13,4 +13,8 @@ EnemyShip::EnemyShip() : Ship() {
     _ship_sprite.scale(0.5, 0.5);
 }
 
+void EnemyShip::moveAlgorithm(){
+    
+
+}
 __END_API

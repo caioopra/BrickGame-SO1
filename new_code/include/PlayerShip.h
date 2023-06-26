@@ -20,6 +20,7 @@ class PlayerShip : public Ship {
     ~PlayerShip(){};
 
     void run();
+    
 
    private:
     int vidas = 3;
