@@ -25,7 +25,7 @@ class GameHandler {
     void initialize();
 
     static std::shared_ptr<PlayerShip> _player;
-    static std::shared_ptr<std::list<EnemyShip>> _enemies;
+    static std::shared_ptr<std::list<EnemyShip*>> _enemies;
     static std::shared_ptr<std::list<sf::Sprite>> _toDrawSprites;
     static std::shared_ptr<std::list<sf::Event>> _eventList;
 };

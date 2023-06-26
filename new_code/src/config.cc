@@ -13,10 +13,6 @@ bool Config::isGameOver = false;
 
 int Config::height = 560;
 int Config::width = 814;
-int Config::playableHeight = 600; 
-int Config::playableWidth = 600; 
-int Config::infoHeight = 560;
-int Config::infoWidth = 569;
 int Config::max_lives = 3;
 
 // void Config::deleteSemaphores()

@@ -6,7 +6,7 @@ __BEGIN_API
 
 Ship::Ship() {
     _shots =  new std::list<Shot*>;
-    _velocidade = 20;
+    _velocidade = 10;
 }
 
 // TODO: deletar tiros da lista

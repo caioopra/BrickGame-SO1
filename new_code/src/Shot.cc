@@ -11,7 +11,7 @@ Shot::Shot(int x, int y, int direction)
     _shot_sprite.setTexture(_shot_texture);
     _shot_sprite.scale(0.5, 0.5);
 
-    _velocidade = 20;
+    _velocidade = 10;
     _direction = direction;
 
     _x = x;

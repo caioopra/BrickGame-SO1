@@ -19,7 +19,7 @@ PlayerShip::PlayerShip() : Ship() {
 
 void PlayerShip::run() {
     std::cout << "Player running\n\n" << std::endl;
-    move();
+    // move();
     _ship_sprite.setPosition(_x,_y);
 
     // std::list<Shot*>::iterator shotsIterator;

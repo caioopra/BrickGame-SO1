@@ -14,6 +14,7 @@ __BEGIN_API
 class Ship {
 public:
     Ship();
+    ~Ship();
 
     enum Direction {
         UP,

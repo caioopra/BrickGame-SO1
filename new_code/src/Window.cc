@@ -51,13 +51,17 @@ void Window::update() {
 
     _window.draw(_gameHandler->_player->_ship_sprite);
 
+    for (auto enemy : *_gameHandler->_enemies) {
+        _window.draw(*enemy->getShipSprite());
+    }
+
+
     for (auto shot : *_gameHandler->_player->_shots) {
         shot->move();
         _window.draw(shot->getShotSprite());
     }
 
     _window.display();
-    std::cout<< " WINDOW DISPLAY" << std::endl;
-    
+    std::cout<< " WINDOW DISPLAY" << std::endl;    
 }
 __END_API
