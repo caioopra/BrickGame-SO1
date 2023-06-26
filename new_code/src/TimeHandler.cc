@@ -12,16 +12,20 @@ TimeHandler::TimeHandler() {
     std::cout << "GAME HANDLER created" << std::endl;
     _playerClock = std::make_shared<sf::Clock>();
     _enemiesClock = std::make_shared<sf::Clock>();
+    contador = 0;
 }
 
 
 bool TimeHandler::playerCanShot() {
     sf::Time newTime = _playerClock->getElapsedTime();
     if (newTime.asMilliseconds()>500){
+
         std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT" << std::endl;
         std::cout << newTime.asMilliseconds() << std::endl;
         std::cout << "TIME HANDLER PLAYER CAN SHOT\n\n" << std::endl;
+
         _playerClock->restart();
+
         return true;
     }else{
         return false;
@@ -34,7 +38,11 @@ bool TimeHandler::enemyCanShot() {
         std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT" << std::endl;
         std::cout << newTime.asMilliseconds() << std::endl;
         std::cout << "TIME HANDLER PLAYER CAN SHOT\n\n" << std::endl;
+        contador++;
+        if(contador == 3){
         _enemiesClock->restart();
+        contador=0;
+        }
         return true;
     }else{
         std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT NAO ATIROUUUUUUUUUUUUUUUU" << std::endl;

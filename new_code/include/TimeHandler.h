@@ -28,7 +28,7 @@ class TimeHandler {
 
     static std::shared_ptr<sf::Clock> _playerClock;
     static std::shared_ptr<sf::Clock> _enemiesClock;
-
+    int contador = 0;
 };
 
 __END_API
