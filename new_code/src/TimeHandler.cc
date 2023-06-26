@@ -7,22 +7,21 @@ __BEGIN_API
 
 std::shared_ptr<sf::Clock> TimeHandler::_playerClock;
 std::shared_ptr<sf::Clock> TimeHandler::_enemiesClock;
+std::shared_ptr<sf::Clock> TimeHandler::_enemiesMoveClock;
 
 TimeHandler::TimeHandler() {
     std::cout << "GAME HANDLER created" << std::endl;
     _playerClock = std::make_shared<sf::Clock>();
     _enemiesClock = std::make_shared<sf::Clock>();
+    _enemiesMoveClock = std::make_shared<sf::Clock>();
     contador = 0;
+    contadorMove = 0;
 }
 
 
 bool TimeHandler::playerCanShot() {
     sf::Time newTime = _playerClock->getElapsedTime();
     if (newTime.asMilliseconds()>500){
-
-        std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT" << std::endl;
-        std::cout << newTime.asMilliseconds() << std::endl;
-        std::cout << "TIME HANDLER PLAYER CAN SHOT\n\n" << std::endl;
 
         _playerClock->restart();
 
@@ -35,9 +34,6 @@ bool TimeHandler::playerCanShot() {
 bool TimeHandler::enemyCanShot() {
     sf::Time newTime = _enemiesClock->getElapsedTime();
     if (newTime.asMilliseconds()>500){
-        std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT" << std::endl;
-        std::cout << newTime.asMilliseconds() << std::endl;
-        std::cout << "TIME HANDLER PLAYER CAN SHOT\n\n" << std::endl;
         contador++;
         if(contador == 3){
         _enemiesClock->restart();
@@ -45,12 +41,24 @@ bool TimeHandler::enemyCanShot() {
         }
         return true;
     }else{
-        std::cout << "\n\nTIME HANDLER PLAYER CAN SHOT NAO ATIROUUUUUUUUUUUUUUUU" << std::endl;
-        std::cout << newTime.asMilliseconds() << std::endl;
-        std::cout << "TIME HANDLER PLAYER CAN SHOT\n\n" << std::endl;
+
         return false;
     }
 }
 
+bool TimeHandler::enemyCanMove() {
+    sf::Time newTime = _enemiesMoveClock->getElapsedTime();
+    if (newTime.asMilliseconds()>60){
+        contadorMove++;
+        if(contador == 3){
+            _enemiesMoveClock->restart();
+            contadorMove=0;
+        }
+        return true;
+    }else{
+
+        return false;
+    }
+}
 
 __END_API

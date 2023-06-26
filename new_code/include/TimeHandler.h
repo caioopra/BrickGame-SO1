@@ -25,10 +25,13 @@ class TimeHandler {
     void initialize();
     bool playerCanShot();
     bool enemyCanShot();
+    bool enemyCanMove();
 
     static std::shared_ptr<sf::Clock> _playerClock;
     static std::shared_ptr<sf::Clock> _enemiesClock;
+    static std::shared_ptr<sf::Clock> _enemiesMoveClock;
     int contador = 0;
+    int contadorMove = 0;
 };
 
 __END_API

@@ -72,25 +72,33 @@ void EnemiesHandler::colisionEnemies() {
                     }else{
                             if (myEnemy->getDirection() == Ship::UP) {
                                 if (myEnemy->_y - myEnemy->_velocidade > 0) { 
-                                    myEnemy->move();
+                                    if(timeHandler2.enemyCanMove()){
+                                        myEnemy->move();
+                                    }
                                 }else{
                                     myEnemy->changeDirection(Ship::DOWN);
                                 }
                             } else if (myEnemy->getDirection() == Ship::DOWN) {
                                 if (myEnemy->_y + myEnemy->_velocidade < 512) { 
-                                    myEnemy->move();
+                                    if(timeHandler2.enemyCanMove()){
+                                        myEnemy->move();
+                                    }
                                 }else{
                                     myEnemy->changeDirection(Ship::UP);
                                 }
                             } else if (myEnemy->getDirection() == Ship::RIGHT) {
                                 if (myEnemy->_x + myEnemy->_velocidade < 512) { 
-                                    myEnemy->move();
+                                    if(timeHandler2.enemyCanMove()){
+                                        myEnemy->move();
+                                    }
                                 }else{
                                     myEnemy->changeDirection(Ship::LEFT);
                                 }
                             } else {
                                 if (myEnemy->_x - myEnemy->_velocidade > 0) {
-                                    myEnemy->move();
+                                    if(timeHandler2.enemyCanMove()){
+                                        myEnemy->move();
+                                    }
                                 }else{
                                     myEnemy->changeDirection(Ship::RIGHT);
                                 }
