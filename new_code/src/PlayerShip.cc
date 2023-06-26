@@ -21,8 +21,11 @@ void PlayerShip::run() {
     std::cout << "Player running\n\n" << std::endl;
     move();
     _ship_sprite.setPosition(_x,_y);
-    // _gameHandler->_toDrawSprites->push_back(_ship_sprite);
 
+    // std::list<Shot*>::iterator shotsIterator;
+    // for (shotsIterator = _shots->begin(); shotsIterator != _shots->end();shotsIterator++) {
+    //     my_shot.move();
+    // }
 }
 
 __END_API

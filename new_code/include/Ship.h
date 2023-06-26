@@ -42,7 +42,7 @@ public:
     void setMoving(bool moving);
 
 
-    std::list<Shot> _shots;
+    std::list<Shot*>* _shots;
     sf::Sprite _ship_sprite;
     int _x = 200;
     int _y = 200;

@@ -3,7 +3,9 @@
 
 __BEGIN_API
 
+
 Ship::Ship() {
+    _shots =  new std::list<Shot*>;
     _velocidade = 20;
 }
 
@@ -57,15 +59,19 @@ void Ship::setMoving(bool moving) {
     _moving = moving;
 }
 
-void Ship::createShot(){
+void Ship::createShot() {
     if (_direction == UP){
-        _shots.push_back(Shot(_x+31, _y, _direction));
+        Shot * shot = new Shot(_x+17, _y-17, _direction);
+        _shots->push_back(shot);
     } else if (_direction == DOWN){
-        _shots.push_back(Shot(_x+31, _y+48, _direction));
-    }else if (_direction == RIGHT){
-        _shots.push_back(Shot(_x+48, _y+31, _direction));
-    }else if (_direction == LEFT){
-        _shots.push_back(Shot(_x, _y+31, _direction));
+        Shot * shot = new Shot(_x+17, _y+48, _direction);
+        _shots->push_back(shot);
+    } else if (_direction == RIGHT){
+        Shot* shot = new Shot(_x+48, _y+17, _direction);
+        _shots->push_back(shot);
+    } else if (_direction == LEFT){
+        Shot* shot = new Shot(_x, _y+17, _direction);
+        _shots->push_back(shot);
     }
 }
 

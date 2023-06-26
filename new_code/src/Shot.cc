@@ -2,21 +2,27 @@
 
 __BEGIN_API
 
-Shot::Shot(int x, int y, int direction) {
-    _shot_texture.loadFromFile("sprites/space_ships/shot.png");
+Shot::Shot(int x, int y, int direction)
+{
+    if (!_shot_texture.loadFromFile("sprites/space_ships/shot.png")) {
+        std::cout << "fahwbfuybwaf" << std::endl;
+    }
+
     _shot_sprite.setTexture(_shot_texture);
     _shot_sprite.scale(0.5, 0.5);
 
     _velocidade = 20;
     _direction = direction;
 
-    _shot_sprite.setPosition(x,y);
     _x = x;
     _y = y;
+    _shot_sprite.setPosition(_x, _y);
 }
 
-void Shot::move() {
-    switch(_direction) {
+void Shot::move()
+{
+    std::cout << _x << " " << _y << std::endl;
+    switch (_direction) {
         case UP:
             moveUp();
             break;
@@ -31,23 +37,28 @@ void Shot::move() {
             break;
     }
 
+    _shot_sprite.setPosition(_x, _y);
+    std::cout << _x << " " << _y << std::endl;
 }
 
-void Shot::moveUp() { 
+void Shot::moveUp()
+{
     _y -= _velocidade;
 }
 
-void Shot::moveDown() {
+void Shot::moveDown()
+{
     _y += _velocidade;
 }
 
-void Shot::moveRight() {
+void Shot::moveRight()
+{
     _x += _velocidade;
 }
 
-void Shot::moveLeft() {
+void Shot::moveLeft()
+{
     _x -= _velocidade;
 }
-
 
 __END_API

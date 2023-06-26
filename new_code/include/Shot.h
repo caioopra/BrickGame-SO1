@@ -34,7 +34,6 @@ class Shot {
     int getDirection() { return _direction; }
     void changeDirection(Direction new_direction);
 
-   protected:
     int _x, _y;
     sf::Texture _shot_texture;
     sf::Sprite _shot_sprite;
@@ -42,6 +41,7 @@ class Shot {
     int _direction;
 
     int _velocidade;
+   protected:
 };
 
 __END_API

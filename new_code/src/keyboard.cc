@@ -68,7 +68,7 @@ void Keyboard::receiveEvent(sf::Event event) {
         }
         if(event.key.code == sf::Keyboard::Space){
             std::cout << "KEYBOARD espaco solto!" << std::endl; 
-            // can_shot = true;
+            can_shot = true;
         } 
         
         // else { 
