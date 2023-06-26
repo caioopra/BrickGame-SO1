@@ -9,6 +9,8 @@ std::shared_ptr<std::list<sf::Sprite>> GameHandler::_toDrawSprites;
 std::shared_ptr<std::list<sf::Event>> GameHandler::_eventList;
 std::shared_ptr<PlayerShip> GameHandler::_player;
 std::shared_ptr<std::list<EnemyShip*>> GameHandler::_enemies;
+int GameHandler::_score;
+int GameHandler::_speed;
 
 GameHandler::GameHandler() {
     std::cout << "GAME HANDLER created" << std::endl;
@@ -16,6 +18,9 @@ GameHandler::GameHandler() {
     _eventList = std::make_shared<std::list<sf::Event>>();
     _player = std::make_shared<PlayerShip>();
     _enemies = std::make_shared<std::list<EnemyShip*>>();
+
+    _score = 0;
+    _speed = 1;
 
     for (int i = 0; i < 4; i++) {
         EnemyShip* enemy = new EnemyShip();

@@ -16,6 +16,17 @@ void Window::load_and_bind_textures() {
     _background_texture.loadFromFile("sprites/maze/screen.png");
     _background_sprite.setTexture(_background_texture);
     _background_sprite.scale(1.5, 1.5);
+    _font.loadFromFile("sprites/font.ttf");
+
+    _score_text.setFont(_font);
+    _score_text.setString("Score: " + std::to_string(_gameHandler->_score));
+    _score_text.setCharacterSize(30);
+    _score_text.move(580, 45);
+
+    _speed_text.setFont(_font);
+    _speed_text.setString("Velocidade: " + std::to_string(_gameHandler->_speed));
+    _speed_text.setCharacterSize(27);
+    _speed_text.move(580, 85);
 }
 
 void Window::run() {    
@@ -64,6 +75,8 @@ void Window::update() {
         _window.draw(shot->getShotSprite());
     }
     
+    _window.draw(_score_text);
+    _window.draw(_speed_text);
 
     _window.display();
     std::cout<< " WINDOW DISPLAY" << std::endl;    

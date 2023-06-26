@@ -38,6 +38,10 @@ class Window {
     sf::Texture _background_texture;
     sf::Sprite _background_sprite;
 
+    sf::Font _font;
+    sf::Text _score_text;
+    sf::Text _speed_text;
+
     bool _closed = false;
     bool _paused = false;
 };

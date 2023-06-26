@@ -28,6 +28,10 @@ class GameHandler {
     static std::shared_ptr<std::list<EnemyShip*>> _enemies;
     static std::shared_ptr<std::list<sf::Sprite>> _toDrawSprites;
     static std::shared_ptr<std::list<sf::Event>> _eventList;
+
+    static int _score;
+    static int _speed;
+
 };
 
 __END_API
