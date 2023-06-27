@@ -28,6 +28,7 @@ class CollisionHandler {
     void checkBorderCollisionEnemyShot();
     void checkCollisionBulletEnemy();
     void checkCollisionBulletPlayer();
+    void checkCollisionPLayerEnemy();
 
     int getFuturePosition();
 

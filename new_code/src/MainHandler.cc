@@ -15,7 +15,6 @@ Thread* MainHandler::enemyThread2;
 Thread* MainHandler::enemyThread3;
 Thread* MainHandler::enemyThread4;
 
-Game* MainHandler::game;
 Window* MainHandler::window;
 Keyboard* MainHandler::keyboard;
 PlayerHandler* MainHandler::playerHandler;
@@ -30,7 +29,7 @@ void MainHandler::exec(void * name) {
     gameHandler = std::make_shared<GameHandler>();
     gameHandler->initialize();
 
-    gameLoopThread = new Thread(gameExec);
+     = new Thread(gameExec);
     playerThread = new Thread(playerExec);
     windowThread = new Thread(windowExec);
     keyboardThread = new Thread(keyboardExec);
@@ -41,8 +40,6 @@ void MainHandler::exec(void * name) {
     collisionHandlerThread = new Thread(collisionHandlerExec);
     enemiesHandlerThread = new Thread(enemiesHandlerExec);
 
-
-    gameLoopThread->join();
     windowThread->join();
     playerThread->join();
     keyboardThread->join();
@@ -53,7 +50,6 @@ void MainHandler::exec(void * name) {
     enemyThread4->join();
     enemiesHandlerThread->join();
 
-    delete gameLoopThread;
     delete windowThread;
     delete playerThread;
     delete keyboardThread;
@@ -66,15 +62,6 @@ void MainHandler::exec(void * name) {
 }
 
 // gets the events and insert them into the gameHandler or deal with them as necessary
-void MainHandler::gameExec() {
-    std::cout<< " GAME HANDLER EXEC" << std::endl;
-    game = new Game();
-    game->setGameHandler(gameHandler);
-    game->run();
-
-    delete game;
-}
-
 void MainHandler::windowExec() {
     std::cout<< " WINDOW EXEC" << std::endl;
     window = new Window();

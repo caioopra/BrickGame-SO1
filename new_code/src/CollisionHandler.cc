@@ -15,6 +15,7 @@ void CollisionHandler::run() {
             checkBorderCollisionEnemyShot();
             checkCollisionBulletEnemy();
             checkCollisionBulletPlayer();
+            // checkCollisionPLayerEnemy();
         }
         // std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
         Thread::yield();
@@ -102,6 +103,25 @@ void CollisionHandler::checkCollisionBulletEnemy() {
         }   
         playerShot++;
     }
+}
+
+void CollisionHandler::checkCollisionPLayerEnemy() {
+        std::list<EnemyShip*>::iterator enemy;
+        for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
+            EnemyShip* myEnemy= *enemy;
+            if (_gameHandler->_player->_ship_sprite.getGlobalBounds().intersects(myEnemy->getShipSprite()->getGlobalBounds())) {
+                myEnemy->setDead(true);
+                myEnemy->_revive_clock.restart();
+                myEnemy->_x = -100;
+                myEnemy->_y = -100;
+                _gameHandler->_player->vidas--;
+                continue;
+                if(!_gameHandler->_player->vidas <= 0){
+                    _gameHandler->_player->vidas = 0;
+                }
+            }
+            enemy++;
+        }  
 }
 
 void CollisionHandler::checkCollisionBulletPlayer(){ 
