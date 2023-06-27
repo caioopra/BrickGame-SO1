@@ -12,18 +12,19 @@ EnemiesHandler::EnemiesHandler() {
 void EnemiesHandler::run() {
     while (!Config::isGameOver) {
         // std::cout << "RUNNING: ENEMIES HANDLER" << std::endl;
-        moveEnemies();
+        if (!_gameHandler->_is_paused) {
+            moveEnemies();
 
-        std::list<EnemyShip*>::iterator enemy;
-        for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
-            EnemyShip* myEnemy= *enemy;
-            if(timeHandler2.enemyCanShot()){
-            myEnemy->createShot();
+            std::list<EnemyShip*>::iterator enemy;
+            for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
+                EnemyShip* myEnemy= *enemy;
+                if(timeHandler2.enemyCanShot()){
+                myEnemy->createShot();
+                }
+                myEnemy->_ship_sprite.setPosition(myEnemy->_x, myEnemy->_y);
+                enemy++;
             }
-            myEnemy->_ship_sprite.setPosition(myEnemy->_x, myEnemy->_y);
-            enemy++;
         }
-        
 
         Thread::yield();
     }
@@ -114,7 +115,7 @@ void EnemiesHandler::colisionEnemies() {
 
 void EnemiesHandler::moveEnemies() {
         colisionEnemies();
-    }
+}
 
 
 __END_API

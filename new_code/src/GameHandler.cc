@@ -12,6 +12,7 @@ std::shared_ptr<std::list<EnemyShip*>> GameHandler::_enemies;
 int GameHandler::_score;
 int GameHandler::_speed;
 int GameHandler::_amount_killed;
+bool GameHandler::_is_paused;
 
 GameHandler::GameHandler() {
     std::cout << "GAME HANDLER created" << std::endl;
@@ -23,6 +24,7 @@ GameHandler::GameHandler() {
     _score = 0;
     _speed = 1;
     _amount_killed = 0;
+    _is_paused = false;
 
     for (int i = 0; i < 4; i++) {
         EnemyShip* enemy = new EnemyShip();
@@ -55,23 +57,11 @@ void GameHandler::increaseAmountKilled() {
 }
 
 void GameHandler::pause() {
-    _player->_moving = false;
-
-    std::list<EnemyShip*>::iterator enemy;
-    for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
-        EnemyShip* enemyShip = *enemy;
-        enemyShip->_moving = false;
-    }
+    _is_paused = true;
 }
 
 void GameHandler::unpause() {
-    _player->_moving = true;
-
-    std::list<EnemyShip*>::iterator enemy;
-    for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
-        EnemyShip* enemyShip = *enemy;
-        enemyShip->_moving = true;
-    }
+    _is_paused = false;
 }
 
 void GameHandler::initialize() {

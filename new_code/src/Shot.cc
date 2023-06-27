@@ -19,8 +19,7 @@ Shot::Shot(int x, int y, int direction)
     _shot_sprite.setPosition(_x, _y);
 }
 
-void Shot::move()
-{
+void Shot::move() {
     switch (_direction) {
         case UP:
             moveUp();

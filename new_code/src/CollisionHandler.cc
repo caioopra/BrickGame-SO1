@@ -9,11 +9,13 @@ CollisionHandler::CollisionHandler() {
 
 void CollisionHandler::run() {
     while(!Config::isGameOver){
-        checkBorderCollision();
-        checkBorderCollisionShot();
-        checkBorderCollisionEnemyShot();
-        checkCollisionBulletEnemy();
-        checkCollisionBulletPlayer();
+        if (!_gameHandler->_is_paused) {
+            checkBorderCollision();
+            checkBorderCollisionShot();
+            checkBorderCollisionEnemyShot();
+            checkCollisionBulletEnemy();
+            checkCollisionBulletPlayer();
+        }
         // std::cout << "COLLISION HANDLER - CHECKING FOR COLLISION" << std::endl;
         Thread::yield();
     }
