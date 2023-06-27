@@ -9,7 +9,7 @@ Game::Game(){
 
 void Game::run() {
     while(!(_config.isGameOver)){
-        // _window.run();
+
         Thread::yield();
     }
 }
