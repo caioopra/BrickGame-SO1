@@ -14,6 +14,8 @@ EnemyShip::EnemyShip(int movement, int x, int y) : Ship() {
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(0.5, 0.5);
     _movement_algorithm = movement;
+    initial_x = x;
+    initial_y = y;
     _x = x;
     _y = y;
 

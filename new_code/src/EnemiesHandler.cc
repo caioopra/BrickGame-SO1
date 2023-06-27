@@ -13,10 +13,20 @@ void EnemiesHandler::run() {
     while (!Config::isGameOver) {
         if (!_gameHandler->_is_paused) {
             moveEnemies();
-
+            sf::Time newTime;
             std::list<EnemyShip*>::iterator enemy;
             for (enemy = _gameHandler->_enemies->begin(); enemy != _gameHandler->_enemies->end();) {
                 EnemyShip* myEnemy = *enemy;
+                if(myEnemy->_dead){
+                    newTime = myEnemy->_clock.getElapsedTime();
+                    std::cout << newTime.asMilliseconds() <<" "<< myEnemy->_clock.getElapsedTime().asMilliseconds()<< std::endl;
+                    if (newTime.asMilliseconds() > 2000) {
+                        myEnemy->setDead(false);
+                        myEnemy->_x = myEnemy->initial_x;
+                        myEnemy->_y = myEnemy->initial_y;
+                        newTime = myEnemy->_clock.restart(); 
+                    }
+                }
                 if (timeHandler2.enemyCanShot()) {
                     myEnemy->createShot();
                 }

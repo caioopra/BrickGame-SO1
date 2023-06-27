@@ -1,4 +1,4 @@
-#ifndef ENEMYSHIP_H
+    #ifndef ENEMYSHIP_H
 #define ENEMYSHIP_H
 
 #include <png.h>
@@ -20,12 +20,13 @@ class EnemyShip : public Ship {
     void setDead(bool state) { _dead = state; }
     sf::Clock getClock() { return _clock; }
  
-   private:
     bool _dead = false;
+    int initial_x, initial_y;
+    sf::Clock _clock;
+   private:
     int _movement_algorithm;
     int movimentation = 0;
 
-    sf::Clock _clock;
 };
 
 __END_API
