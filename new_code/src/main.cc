@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../include/Game.h"
 #include "../include/GameHandler.h"
 #include "../include/threading/system.h"
 #include "../include/MainHandler.h"

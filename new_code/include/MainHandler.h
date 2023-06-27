@@ -23,7 +23,6 @@ class MainHandler {
 
     static void exec(void * name);
 
-    static void gameExec();
     static void windowExec();
     static void keyboardExec();
     static void playerExec();
@@ -36,7 +35,6 @@ class MainHandler {
 
     static std::shared_ptr<GameHandler> gameHandler;
 
-    static Thread* gameLoopThread;
     static Thread* windowThread;
     static Thread* keyboardThread;
     static Thread* playerThread;
@@ -49,7 +47,6 @@ class MainHandler {
 
     static PlayerHandler* playerHandler;
     static EnemiesHandler* enemiesHandler;
-    static Game* game;
     static Window* window;
     static Keyboard* keyboard;
     static CollisionHandler* collisionHandler;

@@ -4,7 +4,6 @@ __BEGIN_API
 
 std::shared_ptr<GameHandler> MainHandler::gameHandler;
 
-Thread* MainHandler::gameLoopThread;
 Thread* MainHandler::windowThread;
 Thread* MainHandler::keyboardThread;
 Thread* MainHandler::playerThread;
@@ -29,7 +28,6 @@ void MainHandler::exec(void * name) {
     gameHandler = std::make_shared<GameHandler>();
     gameHandler->initialize();
 
-     = new Thread(gameExec);
     playerThread = new Thread(playerExec);
     windowThread = new Thread(windowExec);
     keyboardThread = new Thread(keyboardExec);
