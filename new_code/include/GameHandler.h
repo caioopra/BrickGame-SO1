@@ -36,6 +36,8 @@ class GameHandler {
     static bool _is_paused;
     static bool _is_over;
 
+    static bool _movementType;
+
     static void increaseScore();
     static void increaseAmountKilled();
     static void pause();

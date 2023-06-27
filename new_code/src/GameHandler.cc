@@ -14,6 +14,7 @@ int GameHandler::_speed;
 int GameHandler::_amount_killed;
 bool GameHandler::_is_paused;
 bool GameHandler::_is_over;
+bool GameHandler::_movementType;
 
 class EnemyShip;
 
@@ -28,6 +29,7 @@ GameHandler::GameHandler() {
     _speed = 1;
     _amount_killed = 0;
     _is_paused = false;
+    _movementType = true;
 }
 
 void GameHandler::increaseScore() {
@@ -67,13 +69,17 @@ void GameHandler::reset() {
     _speed = 1;
     _amount_killed = 0;
     _is_over = false;
+    _movementType = !_movementType;
 
     std::list<EnemyShip*>::iterator enemy;
     for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
         EnemyShip* enemyShip = *enemy;
         enemyShip->_x = enemyShip->initial_x;
         enemyShip->_y = enemyShip->initial_y;
+        enemyShip->_shots->clear();
     }
+    
+    _player->_shots->clear();
     _player->_x = 200;
     _player->_y = 200;
     _player->vidas = 3;

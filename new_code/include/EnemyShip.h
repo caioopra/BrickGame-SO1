@@ -1,4 +1,4 @@
-    #ifndef ENEMYSHIP_H
+#ifndef ENEMYSHIP_H
 #define ENEMYSHIP_H
 
 #include <png.h>
@@ -24,9 +24,8 @@ class EnemyShip : public Ship {
     int initial_x, initial_y;
 
     sf::Clock _revive_clock;
-   private:
     int _movement_algorithm;
-    int movimentation = 0;
+   private:
 
 };
 

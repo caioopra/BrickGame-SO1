@@ -24,6 +24,7 @@ class EnemiesHandler{
     void moveEnemies();
     void colisionBorder();
     void colisionEnemies();
+    void colisionEnemies2();
 
     std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }
     void setGameHandler(std::shared_ptr<GameHandler> ptr) { _gameHandler = ptr; }

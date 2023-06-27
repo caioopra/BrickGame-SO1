@@ -46,7 +46,7 @@ void Window::run() {
                     break;
                 case sf::Event::KeyPressed:
                     _gameHandler->_eventList->push_back(event);
-                    if (event.key.code == sf::Keyboard::P) {
+                    if (event.key.code == sf::Keyboard::P && _gameHandler->_player->vidas > 0) {
                         std::cout << "GAME BEING PAUSED " << std::endl;
                         if (_paused) {
                             _gameHandler->unpause();
@@ -75,7 +75,7 @@ void Window::run() {
             drawEndScreen();
             _window.display();  
             _gameHandler->pause();
-            _gameHandler->_is_over=true;
+            _gameHandler->_is_over = true;
             Config::isGameOver = false;
         }
 
@@ -83,7 +83,6 @@ void Window::run() {
             update();
         }
         _window.display();
-
 
         // std::cout<< " WINDOW LOOP" << std::endl;
         Thread::yield();
@@ -139,7 +138,6 @@ void Window::drawEndScreen() {
     text.setCharacterSize(40);
     text.move(200, 240);
     _window.draw(text);
-
 }
 
 __END_API

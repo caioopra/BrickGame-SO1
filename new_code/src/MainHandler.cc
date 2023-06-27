@@ -120,21 +120,21 @@ void MainHandler::enemyExec1() {
 }
 
 void MainHandler::enemyExec2() {
-    enemy2 = new EnemyShip(0, 20, 400);
+    enemy2 = new EnemyShip(1, 20, 400);
     enemy2->run();
 
     delete enemy2;
 }
 
 void MainHandler::enemyExec3() {
-    enemy3 = new EnemyShip(1, 400, 20);
+    enemy3 = new EnemyShip(2, 400, 20);
     enemy3->run();
 
     delete enemy3;
 }
 
 void MainHandler::enemyExec4() {
-    enemy4 = new EnemyShip(1, 400, 400);
+    enemy4 = new EnemyShip(3, 400, 400);
     enemy4->run();
 
     delete enemy4;
