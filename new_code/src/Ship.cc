@@ -92,6 +92,7 @@ bool Ship::canShot(){
         return false;
     }
 }
+
 bool Ship::canMove(){
     sf::Time newTime = _movement_clock.getElapsedTime();
     if (newTime.asMilliseconds()>25) {
