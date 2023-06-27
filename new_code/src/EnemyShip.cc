@@ -24,7 +24,9 @@ EnemyShip::EnemyShip(int movement, int x, int y) : Ship() {
 
 void EnemyShip::run() {
     while (!Config::isGameOver) {
-        
+        // if(canMove()){
+        //     move();
+        // }
         Thread::yield();
     }
 }

@@ -51,26 +51,24 @@ void EnemiesHandler::colisionEnemies() {
             x2 = myEnemy_2->_x;
             y2 = myEnemy_2->_y;
 
-            colisao_1 = std::min(y1, y1 + 48) < std::max(y2, y2 + 48) && std::max(y1, y1 + 48) > std::min(y2, y2 + 48);
-            colisao_2 = std::min(x1, x1 + 48) < std::max(x2, x2 + 48) && std::max(x1, x1 + 48) > std::min(x2, x2 + 48);
+            colisao_1 = std::min(y1, y1 + 80) < std::max(y2, y2 + 80) && std::max(y1, y1 + 80) > std::min(y2, y2 + 80);
+            colisao_2 = std::min(x1, x1 + 80) < std::max(x2, x2 + 80) && std::max(x1, x1 + 80) > std::min(x2, x2 + 80);
 
             colisao = colisao_1 && colisao_2;
-
-
 
             if (colisao && (enemy != enemy_2)) {
                 std::cout << "\n\n\n ENEMIES COLIDING" << std::endl;
                 if (myEnemy->getDirection() == Ship::UP) {
-                    myEnemy->changeDirection(Ship::DOWN);
-
-                } else if (myEnemy->getDirection() == Ship::DOWN) {
-                    myEnemy->changeDirection(Ship::UP);
-
-                } else if (myEnemy->getDirection() == Ship::RIGHT) {
                     myEnemy->changeDirection(Ship::LEFT);
 
-                } else {
+                } else if (myEnemy->getDirection() == Ship::DOWN) {
                     myEnemy->changeDirection(Ship::RIGHT);
+
+                } else if (myEnemy->getDirection() == Ship::RIGHT) {
+                    myEnemy->changeDirection(Ship::UP);
+
+                } else {
+                    myEnemy->changeDirection(Ship::DOWN);
                 }
             } else {
                 if (myEnemy->getDirection() == Ship::UP) {

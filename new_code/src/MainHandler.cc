@@ -47,12 +47,22 @@ void MainHandler::exec(void * name) {
     playerThread->join();
     keyboardThread->join();
     collisionHandlerThread->join();
+    enemyThread1->join();
+    enemyThread2->join();
+    enemyThread3->join();
+    enemyThread4->join();
+    enemiesHandlerThread->join();
 
     delete gameLoopThread;
     delete windowThread;
     delete playerThread;
     delete keyboardThread;
     delete collisionHandlerThread;
+    delete enemyThread1;
+    delete enemyThread2;
+    delete enemyThread3;
+    delete enemyThread4;
+    delete enemiesHandlerThread;
 }
 
 // gets the events and insert them into the gameHandler or deal with them as necessary
