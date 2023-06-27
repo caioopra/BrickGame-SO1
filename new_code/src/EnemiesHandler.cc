@@ -60,15 +60,19 @@ void EnemiesHandler::colisionEnemies() {
                 std::cout << "\n\n\n ENEMIES COLIDING" << std::endl;
                 if (myEnemy->getDirection() == Ship::UP) {
                     myEnemy->changeDirection(Ship::LEFT);
+                    myEnemy_2->changeDirection(Ship::DOWN);
 
                 } else if (myEnemy->getDirection() == Ship::DOWN) {
                     myEnemy->changeDirection(Ship::RIGHT);
+                    myEnemy_2->changeDirection(Ship::UP);
 
                 } else if (myEnemy->getDirection() == Ship::RIGHT) {
                     myEnemy->changeDirection(Ship::UP);
+                    myEnemy_2->changeDirection(Ship::LEFT);
 
                 } else {
                     myEnemy->changeDirection(Ship::DOWN);
+                    myEnemy_2->changeDirection(Ship::RIGHT);
                 }
             } else {
                 if (myEnemy->getDirection() == Ship::UP) {
