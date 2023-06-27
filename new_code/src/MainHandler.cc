@@ -10,6 +10,10 @@ Thread* MainHandler::keyboardThread;
 Thread* MainHandler::playerThread;
 Thread* MainHandler::collisionHandlerThread;
 Thread* MainHandler::enemiesHandlerThread;
+Thread* MainHandler::enemyThread1;
+Thread* MainHandler::enemyThread2;
+Thread* MainHandler::enemyThread3;
+Thread* MainHandler::enemyThread4;
 
 Game* MainHandler::game;
 Window* MainHandler::window;
@@ -17,6 +21,10 @@ Keyboard* MainHandler::keyboard;
 PlayerHandler* MainHandler::playerHandler;
 CollisionHandler* MainHandler::collisionHandler;
 EnemiesHandler* MainHandler::enemiesHandler;
+EnemyShip* MainHandler::enemy1;
+EnemyShip* MainHandler::enemy2;
+EnemyShip* MainHandler::enemy3;
+EnemyShip* MainHandler::enemy4;
 
 void MainHandler::exec(void * name) {
     gameHandler = std::make_shared<GameHandler>();
@@ -26,8 +34,13 @@ void MainHandler::exec(void * name) {
     playerThread = new Thread(playerExec);
     windowThread = new Thread(windowExec);
     keyboardThread = new Thread(keyboardExec);
-    enemiesHandlerThread = new Thread(enemiesHandlerExec);
+    enemyThread1 = new Thread(enemyExec1);
+    enemyThread2 = new Thread(enemyExec2);
+    enemyThread3 = new Thread(enemyExec3);
+    enemyThread4 = new Thread(enemyExec4);
     collisionHandlerThread = new Thread(collisionHandlerExec);
+    enemiesHandlerThread = new Thread(enemiesHandlerExec);
+
 
     gameLoopThread->join();
     windowThread->join();
@@ -79,13 +92,6 @@ void MainHandler::playerExec() {
     delete playerHandler;
 }
 
-void MainHandler::enemiesHandlerExec() {
-    std::cout<< " ENEMIES EXEC" << std::endl;
-    enemiesHandler = new EnemiesHandler();
-    enemiesHandler->setGameHandler(gameHandler);
-    enemiesHandler->run();
-    delete enemiesHandler;
-}
 
 void MainHandler::collisionHandlerExec() {
     collisionHandler = new CollisionHandler();
@@ -95,4 +101,45 @@ void MainHandler::collisionHandlerExec() {
     delete collisionHandler;
 }
 
+void MainHandler::enemyExec1() {
+    enemy1 = new EnemyShip(0, 20, 20);
+
+    enemy1->run();
+
+    delete enemy1;
+}
+
+void MainHandler::enemyExec2() {
+    enemy2 = new EnemyShip(0, 20, 400);
+    enemy2->run();
+
+    delete enemy2;
+}
+
+void MainHandler::enemyExec3() {
+    enemy3 = new EnemyShip(1, 400, 20);
+    enemy3->run();
+
+    delete enemy3;
+}
+
+void MainHandler::enemyExec4() {
+    enemy4 = new EnemyShip(1, 400, 400);
+    enemy4->run();
+
+    delete enemy4;
+}
+
+void MainHandler::enemiesHandlerExec() {
+    std::cout<< " ENEMIES EXEC" << std::endl;
+    enemiesHandler = new EnemiesHandler();
+    enemiesHandler->setGameHandler(gameHandler);
+    gameHandler->_enemies->push_back(enemy1);
+    gameHandler->_enemies->push_back(enemy2);
+    gameHandler->_enemies->push_back(enemy3);
+    gameHandler->_enemies->push_back(enemy4);
+    enemiesHandler->run();
+
+    delete enemiesHandler;
+}
 __END_API

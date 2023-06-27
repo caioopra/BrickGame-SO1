@@ -3,18 +3,28 @@
 
 __BEGIN_API
 
-EnemyShip::EnemyShip() : Ship() {
+EnemyShip::EnemyShip(int movement, int x, int y) : Ship() {
+    std::cout << "POSITION SET" << std::endl;
     _cima.loadFromFile("sprites/space_ships/enemy_space_ship1.png");
     _esquerda.loadFromFile("sprites/space_ships/enemy_space_ship2.png");
     _baixo.loadFromFile("sprites/space_ships/enemy_space_ship3.png");
     _direita.loadFromFile("sprites/space_ships/enemy_space_ship4.png");
+
     _direction = UP;
     _ship_sprite.setTexture(_cima);
     _ship_sprite.scale(0.5, 0.5);
+    _movement_algorithm = movement;
+    _x = x;
+    _y = y;
+
+    _ship_sprite.setPosition(x, y);
+    _clock = sf::Clock();
 }
 
-void EnemyShip::moveAlgorithm(){
-    
-
+void EnemyShip::run() {
+    while (!Config::isGameOver) {
+        Thread::yield();
+    }
 }
+
 __END_API

@@ -8,14 +8,24 @@
 #include "Ship.h"
 #include "threading/traits.h"
 #include "threading/thread.h"
+#include <memory>
+#include "Config.h"
+
 __BEGIN_API
 class EnemyShip : public Ship {
    public:
-    EnemyShip();
-    void moveAlgorithm();
-
+    EnemyShip(int movement, int x, int y);
+    void run();
+ 
+    void setDead(bool state) { _dead = state; }
+    sf::Clock getClock() { return _clock; }
+ 
    private:
+    bool _dead = false;
+    int _movement_algorithm;
     int movimentation = 0;
+
+    sf::Clock _clock;
 };
 
 __END_API

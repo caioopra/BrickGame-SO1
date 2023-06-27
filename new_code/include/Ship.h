@@ -49,7 +49,7 @@ public:
     int _y = 200;
     sf::Texture _cima, _baixo, _esquerda, _direita;
     Direction _direction;  
-      
+    
     bool _moving;
     int _velocidade;
 protected:

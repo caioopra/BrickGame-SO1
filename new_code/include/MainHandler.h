@@ -29,6 +29,10 @@ class MainHandler {
     static void playerExec();
     static void enemiesHandlerExec();
     static void collisionHandlerExec();
+    static void enemyExec1();
+    static void enemyExec2();
+    static void enemyExec3();
+    static void enemyExec4();
 
     static std::shared_ptr<GameHandler> gameHandler;
 
@@ -38,6 +42,10 @@ class MainHandler {
     static Thread* playerThread;
     static Thread* enemiesHandlerThread;
     static Thread* collisionHandlerThread;
+    static Thread* enemyThread1;
+    static Thread* enemyThread2;
+    static Thread* enemyThread3;
+    static Thread* enemyThread4;
 
     static PlayerHandler* playerHandler;
     static EnemiesHandler* enemiesHandler;
@@ -45,6 +53,10 @@ class MainHandler {
     static Window* window;
     static Keyboard* keyboard;
     static CollisionHandler* collisionHandler;
+    static EnemyShip* enemy1;
+    static EnemyShip* enemy2;
+    static EnemyShip* enemy3;
+    static EnemyShip* enemy4;
 };
 
 __END_API
