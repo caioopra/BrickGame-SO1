@@ -9,7 +9,7 @@ __BEGIN_API
 Window::Window() {
     _window.create(sf::VideoMode(Config::width, Config::height), "Brick Game", sf::Style::Titlebar | sf::Style::Close);
     _window.setKeyRepeatEnabled(true);
-    _window.setFramerateLimit(60);
+    // _window.setFramerateLimit(60);
     load_and_bind_textures();
 }
 
@@ -90,7 +90,6 @@ void Window::update() {
     }
 
     for (auto shot : *_gameHandler->_player->_shots) {
-        shot->move();
         _window.draw(shot->getShotSprite());
     }
 

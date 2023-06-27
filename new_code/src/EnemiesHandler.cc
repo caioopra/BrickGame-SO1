@@ -1,10 +1,6 @@
 #include "../include/EnemiesHandler.h"
 
-#include "../include/TimeHandler.h"
-
 __BEGIN_API
-
-TimeHandler timeHandler2 = TimeHandler();
 
 EnemiesHandler::EnemiesHandler() {
 }
@@ -18,34 +14,21 @@ void EnemiesHandler::run() {
             for (enemy = _gameHandler->_enemies->begin(); enemy != _gameHandler->_enemies->end();) {
                 EnemyShip* myEnemy = *enemy;
                 if(myEnemy->_dead){
-                    newTime = myEnemy->_clock.getElapsedTime();
-                    std::cout << newTime.asMilliseconds() <<" "<< myEnemy->_clock.getElapsedTime().asMilliseconds()<< std::endl;
+                    newTime = myEnemy->_revive_clock.getElapsedTime();
+                    // std::cout << newTime.asMilliseconds() <<" "<< myEnemy->_revive_clock.getElapsedTime().asMilliseconds()<< std::endl;
                     if (newTime.asMilliseconds() > 2000) {
                         myEnemy->setDead(false);
                         myEnemy->_x = myEnemy->initial_x;
                         myEnemy->_y = myEnemy->initial_y;
-                        newTime = myEnemy->_clock.restart(); 
+                        newTime = myEnemy->_revive_clock.restart(); 
                     }
                 }
-                if (timeHandler2.enemyCanShot()) {
+                if (myEnemy->canShot()){
                     myEnemy->createShot();
                 }
                 myEnemy->_ship_sprite.setPosition(myEnemy->_x, myEnemy->_y);
                 enemy++;
             }
-
-            // std::list<EnemyShip*>::iterator enemyDead;
-            // for (enemyDead = _gameHandler->_enemiesDead->begin(); enemyDead != _gameHandler->_enemiesDead->end();) {
-            //     EnemyShip* myEnemyDead = *enemyDead;
-            //     sf::Time newTime =  myEnemyDead->getClock().getElapsedTime();
-            //     if (newTime.asMilliseconds() > 2000){
-            //         enemyDead =  _gameHandler->_enemiesDead->erase(enemyDead);
-            //         myEnemyDead->setDead(false);
-            //         _gameHandler->_enemies->push_back(myEnemyDead);
-            //         myEnemyDead->getClock().restart();
-            //     }
-            //     enemy++;
-            // }
             
         }
 
@@ -65,19 +48,20 @@ void EnemiesHandler::colisionEnemies() {
 
             x1 = myEnemy->getShipSprite()->getGlobalBounds().left;
             y1 = myEnemy->getShipSprite()->getGlobalBounds().top;
-            width1 = myEnemy->getShipSprite()->getGlobalBounds().width;
-            height1 = myEnemy->getShipSprite()->getGlobalBounds().height;
             x2 = myEnemy_2->getShipSprite()->getGlobalBounds().left;
             y2 = myEnemy_2->getShipSprite()->getGlobalBounds().top;
-            width2 = myEnemy_2->getShipSprite()->getGlobalBounds().width;
-            height2 = myEnemy_2->getShipSprite()->getGlobalBounds().height;
-            colisao_1 = ((y1 > y2) && (y1 < y2 + height2)) || ((y1 + height1 > y2) && (y1 + height1 < y2 + height2));
-            colisao_2 = ((x1 > x2) && (x1 < x2 + width2)) || ((x1 + width1 > x2) && (x1 + width1 < x2 + width2));
+
+            colisao_1 = ((y1 > y2) && (y1 < y2 + 48)) || ((y1 + 48 > y2) && (y1 + 48 < y2 + 48));
+            colisao_2 = ((x1 > x2) && (x1 < x2 + 48)) || ((x1 + 48 > x2) && (x1 + 48 < x2 + 48));
+
+            std::cout << x1 << " "<< y1 << " "<< x2 <<" "<<y2 << std::endl;
             colisao = colisao_1 && colisao_2;
 
-            // std::cout << colisao << std::endl;
+            std::cout << colisao << std::endl;
 
-            if (colisao && (enemy != enemy_2)) {
+
+            // if (colisao && (enemy != enemy_2)) {
+            if (myEnemy->getShipSprite()->getGlobalBounds().intersects(myEnemy_2->getShipSprite()->getGlobalBounds()) && (enemy != enemy_2)) {
                 std::cout << "\n\n\n ENEMIES COLIDING" << std::endl;
                 if (myEnemy->getDirection() == Ship::UP) {
                     myEnemy->changeDirection(Ship::DOWN);
@@ -94,7 +78,7 @@ void EnemiesHandler::colisionEnemies() {
             } else {
                 if (myEnemy->getDirection() == Ship::UP) {
                     if (myEnemy->_y - myEnemy->_velocidade > 0) {
-                        if (timeHandler2.enemyCanMove()) {
+                        if (myEnemy->canMove()) {
                             myEnemy->move();
                         }
                     } else {
@@ -102,7 +86,7 @@ void EnemiesHandler::colisionEnemies() {
                     }
                 } else if (myEnemy->getDirection() == Ship::DOWN) {
                     if (myEnemy->_y + myEnemy->_velocidade < 512) {
-                        if (timeHandler2.enemyCanMove()) {
+                        if (myEnemy->canMove()) {
                             myEnemy->move();
                         }
                     } else {
@@ -110,7 +94,7 @@ void EnemiesHandler::colisionEnemies() {
                     }
                 } else if (myEnemy->getDirection() == Ship::RIGHT) {
                     if (myEnemy->_x + myEnemy->_velocidade < 512) {
-                        if (timeHandler2.enemyCanMove()) {
+                        if (myEnemy->canMove()) {
                             myEnemy->move();
                         }
                     } else {
@@ -118,7 +102,7 @@ void EnemiesHandler::colisionEnemies() {
                     }
                 } else {
                     if (myEnemy->_x - myEnemy->_velocidade > 0) {
-                        if (timeHandler2.enemyCanMove()) {
+                        if (myEnemy->canMove()) {
                             myEnemy->move();
                         }
                     } else {

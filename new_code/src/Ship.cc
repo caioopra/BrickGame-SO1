@@ -6,7 +6,9 @@ __BEGIN_API
 
 Ship::Ship() {
     _shots =  new std::list<Shot*>;
-    _velocidade = 1;
+    _velocidade = 5;
+    _shot_clock = sf::Clock();
+    _movement_clock = sf::Clock();
 }
 
 // TODO: deletar tiros da lista
@@ -80,5 +82,25 @@ void Ship::createShot() {
         _shots->push_back(shot);
     }
 }
+
+bool Ship::canShot(){
+    sf::Time newTime = _shot_clock.getElapsedTime();
+    if (newTime.asMilliseconds()>500){
+        _shot_clock.restart();
+        return true;
+    }else{
+        return false;
+    }
+}
+bool Ship::canMove(){
+    sf::Time newTime = _movement_clock.getElapsedTime();
+    if (newTime.asMilliseconds()>25) {
+        _movement_clock.restart();
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 __END_API

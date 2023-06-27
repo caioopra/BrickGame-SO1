@@ -2,8 +2,7 @@
 
 __BEGIN_API
 
-Shot::Shot(int x, int y, int direction)
-{
+Shot::Shot(int x, int y, int direction) {
     if (!_shot_texture.loadFromFile("sprites/space_ships/shot.png")) {
         std::cout << "Erro ao carregar textura do tiro" << std::endl;
     }
@@ -17,6 +16,7 @@ Shot::Shot(int x, int y, int direction)
     _x = x;
     _y = y;
     _shot_sprite.setPosition(_x, _y);
+    _clock = sf::Clock();
 }
 
 void Shot::move() {
@@ -38,24 +38,30 @@ void Shot::move() {
     _shot_sprite.setPosition(_x, _y);
 }
 
-void Shot::moveUp()
-{
+void Shot::moveUp() {
     _y -= _velocidade;
 }
 
-void Shot::moveDown()
-{
+void Shot::moveDown() {
     _y += _velocidade;
 }
 
-void Shot::moveRight()
-{
+void Shot::moveRight() {
     _x += _velocidade;
 }
 
-void Shot::moveLeft()
-{
+void Shot::moveLeft() {
     _x -= _velocidade;
+}
+
+bool Shot::canMove() {
+    sf::Time newTime =_clock.getElapsedTime();
+    if (newTime.asMilliseconds()>25) {
+        _clock.restart();
+        return true;
+    } else {
+        return false;
+    }
 }
 
 __END_API

@@ -30,6 +30,8 @@ class Shot {
     void moveRight();
     void moveLeft();
 
+    bool canMove();
+
     int getVelocidade() { return _velocidade; }
     int getDirection() { return _direction; }
     void changeDirection(Direction new_direction);
@@ -41,6 +43,8 @@ class Shot {
     int _direction;
 
     int _velocidade;
+
+    sf::Clock _clock;
    protected:
 };
 

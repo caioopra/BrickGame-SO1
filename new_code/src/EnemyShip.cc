@@ -4,7 +4,6 @@
 __BEGIN_API
 
 EnemyShip::EnemyShip(int movement, int x, int y) : Ship() {
-    std::cout << "POSITION SET" << std::endl;
     _cima.loadFromFile("sprites/space_ships/enemy_space_ship1.png");
     _esquerda.loadFromFile("sprites/space_ships/enemy_space_ship2.png");
     _baixo.loadFromFile("sprites/space_ships/enemy_space_ship3.png");
@@ -20,11 +19,12 @@ EnemyShip::EnemyShip(int movement, int x, int y) : Ship() {
     _y = y;
 
     _ship_sprite.setPosition(x, y);
-    _clock = sf::Clock();
+    _revive_clock = sf::Clock();
 }
 
 void EnemyShip::run() {
     while (!Config::isGameOver) {
+        
         Thread::yield();
     }
 }

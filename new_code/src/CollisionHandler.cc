@@ -22,21 +22,23 @@ void CollisionHandler::run() {
 }
 
 void CollisionHandler::checkBorderCollision() {
-    if (_gameHandler->_player->getDirection() == Ship::UP) {
-        if (_gameHandler->_player->_y - _gameHandler->_player->_velocidade > 0) { 
-            _gameHandler->_player->move();
-        }
-    } else if (_gameHandler->_player->getDirection() == Ship::DOWN) {
-        if (_gameHandler->_player->_y + _gameHandler->_player->_velocidade < 512) { 
-            _gameHandler->_player->move();
-        }
-    } else if (_gameHandler->_player->getDirection() == Ship::RIGHT) {
-        if (_gameHandler->_player->_x + _gameHandler->_player->_velocidade < 512) { 
-            _gameHandler->_player->move();
-        }
-    } else {
-        if (_gameHandler->_player->_x - _gameHandler->_player->_velocidade > 0) {
-            _gameHandler->_player->move();
+    if(_gameHandler->_player->canMove()){
+        if (_gameHandler->_player->getDirection() == Ship::UP) {
+            if (_gameHandler->_player->_y - _gameHandler->_player->_velocidade > 0) { 
+                _gameHandler->_player->move();
+            }
+        } else if (_gameHandler->_player->getDirection() == Ship::DOWN) {
+            if (_gameHandler->_player->_y + _gameHandler->_player->_velocidade < 512) { 
+                _gameHandler->_player->move();
+            }
+        } else if (_gameHandler->_player->getDirection() == Ship::RIGHT) {
+            if (_gameHandler->_player->_x + _gameHandler->_player->_velocidade < 512) { 
+                _gameHandler->_player->move();
+            }
+        } else {
+            if (_gameHandler->_player->_x - _gameHandler->_player->_velocidade > 0) {
+                _gameHandler->_player->move();
+            }
         }
     }
 }
@@ -46,29 +48,31 @@ void CollisionHandler::checkBorderCollisionShot() {
 
     for (it = _gameHandler->_player->_shots->begin(); it != _gameHandler->_player->_shots->end();) {
         Shot* shot = *it;
-        if (shot->getDirection() == Shot::UP) {
-            if (shot->_y - shot->_velocidade > 0) { 
-                shot->move();
+        if (shot->canMove()){
+            if (shot->getDirection() == Shot::UP) {
+                if (shot->_y - shot->_velocidade > 0) { 
+                    shot->move();
+                } else {
+                    it = _gameHandler->_player->_shots->erase(it);
+                }
+            } else if (shot->getDirection() == Shot::DOWN) {
+                if (shot->_y + shot->_velocidade < 512) { 
+                    shot->move();
+                } else {
+                    it = _gameHandler->_player->_shots->erase(it);
+                }
+            } else if (shot->getDirection() == Shot::RIGHT) {
+                if (shot->_x + shot->_velocidade < 512) { 
+                    shot->move();
+                } else {
+                    it = _gameHandler->_player->_shots->erase(it);
+                }
             } else {
-                it = _gameHandler->_player->_shots->erase(it);
-            }
-        } else if (shot->getDirection() == Shot::DOWN) {
-            if (shot->_y + shot->_velocidade < 512) { 
-                shot->move();
-            } else {
-                it = _gameHandler->_player->_shots->erase(it);
-            }
-        } else if (shot->getDirection() == Shot::RIGHT) {
-            if (shot->_x + shot->_velocidade < 512) { 
-                shot->move();
-            } else {
-                it = _gameHandler->_player->_shots->erase(it);
-            }
-        } else {
-            if (shot->_x - shot->_velocidade > 0) {
-                shot->move();
-            } else {
-                it = _gameHandler->_player->_shots->erase(it);
+                if (shot->_x - shot->_velocidade > 0) {
+                    shot->move();
+                } else {
+                    it = _gameHandler->_player->_shots->erase(it);
+                }
             }
         }
 
@@ -87,7 +91,7 @@ void CollisionHandler::checkCollisionBulletEnemy() {
             if (shot->_shot_sprite.getGlobalBounds().intersects(myEnemy->getShipSprite()->getGlobalBounds())) {
                 playerShot = _gameHandler->_player->_shots->erase(playerShot);
                 myEnemy->setDead(true);
-                myEnemy->_clock.restart();
+                myEnemy->_revive_clock.restart();
                 myEnemy->_x = -100;
                 myEnemy->_y = -100;
                 // enemy = _gameHandler->_enemies->erase(enemy);
@@ -126,29 +130,31 @@ void CollisionHandler::checkBorderCollisionEnemyShot() {
         for (enemyShot = myEnemy->_shots->begin(); enemyShot != myEnemy->_shots->end();) {
             Shot* shot = *enemyShot;
             
-            if (shot->getDirection() == Shot::UP) {
-                if (shot->_y - shot->_velocidade > 0) { 
-                    shot->move();
+            if (shot->canMove()) {
+                if (shot->getDirection() == Shot::UP) {
+                    if (shot->_y - shot->_velocidade > 0) { 
+                        shot->move();
+                    } else {
+                        enemyShot = myEnemy->_shots->erase(enemyShot);
+                    }
+                } else if (shot->getDirection() == Shot::DOWN) {
+                    if (shot->_y + shot->_velocidade < 512) { 
+                        shot->move();
+                    } else {
+                        enemyShot = myEnemy->_shots->erase(enemyShot);
+                    }
+                } else if (shot->getDirection() == Shot::RIGHT) {
+                    if (shot->_x + shot->_velocidade < 512) { 
+                        shot->move();
+                    } else {
+                        enemyShot = myEnemy->_shots->erase(enemyShot);
+                    }
                 } else {
-                    enemyShot = myEnemy->_shots->erase(enemyShot);
-                }
-            } else if (shot->getDirection() == Shot::DOWN) {
-                if (shot->_y + shot->_velocidade < 512) { 
-                    shot->move();
-                } else {
-                    enemyShot = myEnemy->_shots->erase(enemyShot);
-                }
-            } else if (shot->getDirection() == Shot::RIGHT) {
-                if (shot->_x + shot->_velocidade < 512) { 
-                    shot->move();
-                } else {
-                    enemyShot = myEnemy->_shots->erase(enemyShot);
-                }
-            } else {
-                if (shot->_x - shot->_velocidade > 0) {
-                    shot->move();
-                } else {
-                    enemyShot = myEnemy->_shots->erase(enemyShot);
+                    if (shot->_x - shot->_velocidade > 0) {
+                        shot->move();
+                    } else {
+                        enemyShot = myEnemy->_shots->erase(enemyShot);
+                    }
                 }
             }
             enemyShot++;

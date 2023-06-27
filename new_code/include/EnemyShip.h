@@ -18,11 +18,12 @@ class EnemyShip : public Ship {
     void run();
  
     void setDead(bool state) { _dead = state; }
-    sf::Clock getClock() { return _clock; }
+    sf::Clock getReviveClock() { return _revive_clock; }
  
     bool _dead = false;
     int initial_x, initial_y;
-    sf::Clock _clock;
+
+    sf::Clock _revive_clock;
    private:
     int _movement_algorithm;
     int movimentation = 0;

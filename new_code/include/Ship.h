@@ -33,6 +33,8 @@ public:
     void moveLeft();
     void createShot();
 
+    bool canShot();
+    bool canMove();
 
     int getVelocidade() { return _velocidade; }
     bool getMoving() { return _moving; }
@@ -42,13 +44,15 @@ public:
     
     void setMoving(bool moving);
 
-
     std::list<Shot*>* _shots;
     sf::Sprite _ship_sprite;
     int _x = 200;
     int _y = 200;
     sf::Texture _cima, _baixo, _esquerda, _direita;
-    Direction _direction;  
+    Direction _direction; 
+ 
+    sf::Clock _shot_clock;
+    sf::Clock _movement_clock;
     
     bool _moving;
     int _velocidade;

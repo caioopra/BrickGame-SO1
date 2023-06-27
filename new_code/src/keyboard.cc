@@ -1,10 +1,8 @@
 #include "../include/Keyboard.h"
 #include <SFML/Window/Keyboard.hpp>
 #include "../include/Config.h"
-#include "../include/TimeHandler.h"
 __BEGIN_API
 
-TimeHandler timeHandler = TimeHandler();
 
 Keyboard::Keyboard() {
 
@@ -40,7 +38,7 @@ void Keyboard::receiveEvent(sf::Event event) {
             _gameHandler->_player->changeDirection(Ship::DOWN);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-            if (timeHandler.playerCanShot()){
+            if (_gameHandler->_player->canShot()){
                 _gameHandler->_player->createShot();
                 can_shot = false;
             }
@@ -56,7 +54,7 @@ void Keyboard::receiveEvent(sf::Event event) {
         } else if(event.key.code == sf::Keyboard::Up) { 
             _gameHandler->_player->setMoving(false);
         }
-        if(event.key.code == sf::Keyboard::Space){
+        if (event.key.code == sf::Keyboard::Space){
             can_shot = true;
         } 
         
