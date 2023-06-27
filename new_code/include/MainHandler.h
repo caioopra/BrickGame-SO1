@@ -6,10 +6,10 @@
 
 #include "GameHandler.h"
 #include "Keyboard.h"
-#include "Game.h"
 #include "CollisionHandler.h"
 #include "PlayerHandler.h"
 #include "EnemiesHandler.h"
+#include "Window.h"
 
 #include "threading/thread.h"
 #include "threading/traits.h"
