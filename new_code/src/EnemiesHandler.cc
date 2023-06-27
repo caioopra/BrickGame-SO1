@@ -24,18 +24,18 @@ void EnemiesHandler::run() {
                 enemy++;
             }
 
-            std::list<EnemyShip*>::iterator enemyDead;
-            for (enemyDead = _gameHandler->_enemiesDead->begin(); enemyDead != _gameHandler->_enemiesDead->end();) {
-                EnemyShip* myEnemyDead = *enemyDead;
-                sf::Time newTime =  myEnemyDead->getClock().getElapsedTime();
-                if (newTime.asMilliseconds() > 2000){
-                    enemyDead =  _gameHandler->_enemiesDead->erase(enemyDead);
-                    myEnemyDead->setDead(false);
-                    _gameHandler->_enemies->push_back(myEnemyDead);
-                    myEnemyDead->getClock().restart();
-                }
-                enemy++;
-            }
+            // std::list<EnemyShip*>::iterator enemyDead;
+            // for (enemyDead = _gameHandler->_enemiesDead->begin(); enemyDead != _gameHandler->_enemiesDead->end();) {
+            //     EnemyShip* myEnemyDead = *enemyDead;
+            //     sf::Time newTime =  myEnemyDead->getClock().getElapsedTime();
+            //     if (newTime.asMilliseconds() > 2000){
+            //         enemyDead =  _gameHandler->_enemiesDead->erase(enemyDead);
+            //         myEnemyDead->setDead(false);
+            //         _gameHandler->_enemies->push_back(myEnemyDead);
+            //         myEnemyDead->getClock().restart();
+            //     }
+            //     enemy++;
+            // }
             
         }
 

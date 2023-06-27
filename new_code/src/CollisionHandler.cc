@@ -87,8 +87,9 @@ void CollisionHandler::checkCollisionBulletEnemy() {
             if (shot->_shot_sprite.getGlobalBounds().intersects(myEnemy->getShipSprite()->getGlobalBounds())) {
                 playerShot = _gameHandler->_player->_shots->erase(playerShot);
                 myEnemy->setDead(true);
+                EnemyShip enemy2 = *myEnemy;
                 enemy = _gameHandler->_enemies->erase(enemy);
-                _gameHandler->_enemiesDead->push_back(*enemy);
+                // _gameHandler->_enemiesDead->push_back(&enemy2);
                 _gameHandler->increaseScore();
                 std::cout << "COLISÃO ENTRE INIMIGO E BALA" << std::endl;
             }
