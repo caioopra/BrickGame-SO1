@@ -104,7 +104,7 @@ void CollisionHandler::checkCollisionBulletEnemy() {
     }
 }
 
-void CollisionHandler::checkCollisionBulletPlayer(){
+void CollisionHandler::checkCollisionBulletPlayer(){ 
     std::list<EnemyShip*>::iterator enemy;
     for (enemy = _gameHandler->_enemies->begin(); enemy !=_gameHandler->_enemies->end();) {
         EnemyShip* myEnemy= *enemy;
@@ -113,8 +113,10 @@ void CollisionHandler::checkCollisionBulletPlayer(){
             Shot* shot = *enemyShot;
             if (shot->_shot_sprite.getGlobalBounds().intersects(_gameHandler->_player->getShipSprite()->getGlobalBounds())) {
                 enemyShot = myEnemy->_shots->erase(enemyShot);
-
-                //TODO: ADICIONAR LOGICA DE PERDER VIDA
+                _gameHandler->_player->vidas--;
+                if(!_gameHandler->_player->vidas <= 0){
+                    _gameHandler->_player->vidas = 0;
+                }
         }
         enemyShot++;
     }

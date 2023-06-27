@@ -27,6 +27,7 @@ class Window {
     void render();
     void update();
     void drawPauseScreen();
+    void drawEndScreen();
 
     bool getClosed() { return _closed; }
     std::shared_ptr<GameHandler> getGameHandler() { return _gameHandler; }

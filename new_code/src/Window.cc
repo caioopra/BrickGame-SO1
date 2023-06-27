@@ -55,12 +55,27 @@ void Window::run() {
                             drawPauseScreen();
                         }
                         _paused = !_paused;                
+                    } else if (event.key.code == sf::Keyboard::Q){
+                        _window.close();
+                        break;
+                    } else if (event.key.code == sf::Keyboard::R && _gameHandler->_player->vidas == 0) {
+                        _gameHandler->reset();
+                        _gameHandler->unpause();
+                        break;
                     }
-                    break;
                 case sf::Event::KeyReleased:
                     _gameHandler->_eventList->push_back(event);
                     break;
             }
+        }
+
+        if(_gameHandler->_player->vidas == 0 && !_gameHandler->_is_over){
+            std::cout << "ENDING GAME" << std::endl;
+            drawEndScreen();
+            _window.display();  
+            _gameHandler->pause();
+            _gameHandler->_is_over=true;
+            Config::isGameOver = false;
         }
 
         if (!_paused) {
@@ -112,6 +127,17 @@ void Window::drawPauseScreen() {
     text.setCharacterSize(40);
     text.move(30, 240);
     _window.draw(text);
+}
+
+void Window::drawEndScreen() {
+    std::cout << "DRAWING END SCREEN" << std::endl;
+    sf::Text text;
+    text.setFont(_font);
+    text.setString("GAME OVER!");
+    text.setCharacterSize(40);
+    text.move(200, 240);
+    _window.draw(text);
+
 }
 
 __END_API

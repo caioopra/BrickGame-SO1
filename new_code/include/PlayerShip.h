@@ -22,8 +22,8 @@ class PlayerShip : public Ship {
     void run();
     
 
-   private:
     int vidas = 3;
+   private:
 
 };
 

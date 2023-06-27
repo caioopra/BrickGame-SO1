@@ -23,6 +23,7 @@ class GameHandler {
    public:
     GameHandler();
     void initialize();
+    void reset();
 
     static std::shared_ptr<PlayerShip> _player;
     static std::shared_ptr<std::list<EnemyShip*>> _enemies;
@@ -33,6 +34,7 @@ class GameHandler {
     static int _speed;
     static int _amount_killed;
     static bool _is_paused;
+    static bool _is_over;
 
     static void increaseScore();
     static void increaseAmountKilled();

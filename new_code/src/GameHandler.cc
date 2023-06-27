@@ -13,6 +13,7 @@ int GameHandler::_score;
 int GameHandler::_speed;
 int GameHandler::_amount_killed;
 bool GameHandler::_is_paused;
+bool GameHandler::_is_over;
 
 class EnemyShip;
 
@@ -59,6 +60,22 @@ void GameHandler::unpause() {
 
 void GameHandler::initialize() {
     std::cout << "GAME HANDLER INITIALIZED" << std::endl;
+}
+
+void GameHandler::reset() {
+    _score = 0;
+    _speed = 1;
+    _amount_killed = 0;
+    _is_over = false;
+
+    std::list<EnemyShip*>::iterator enemy;
+    for (enemy = _enemies->begin(); enemy != _enemies->end(); enemy++) {
+        EnemyShip* enemyShip = *enemy;
+        enemyShip->_x = enemyShip->initial_x;
+        enemyShip->_y = enemyShip->initial_y;
+    }
+    _player->_x = 200;
+    _player->_y = 200;
 }
 
 __END_API
