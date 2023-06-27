@@ -110,6 +110,7 @@ void Window::update() {
 
     _score_text.setString("Score: " + std::to_string(_gameHandler->_score));
     _speed_text.setString("Velocidade: " + std::to_string(_gameHandler->_speed));
+    _lives_text.setString("N. vidas: " + std::to_string(_gameHandler->_player->vidas));
 
     _window.draw(_score_text);
     _window.draw(_speed_text);
