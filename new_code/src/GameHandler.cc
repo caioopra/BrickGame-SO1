@@ -76,6 +76,7 @@ void GameHandler::reset() {
     }
     _player->_x = 200;
     _player->_y = 200;
+    _player->vidas = 3;
 }
 
 __END_API

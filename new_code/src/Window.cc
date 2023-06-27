@@ -61,6 +61,7 @@ void Window::run() {
                     } else if (event.key.code == sf::Keyboard::R && _gameHandler->_player->vidas == 0) {
                         _gameHandler->reset();
                         _gameHandler->unpause();
+                        _gameHandler->_is_over=false;
                         break;
                     }
                 case sf::Event::KeyReleased:

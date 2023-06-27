@@ -114,6 +114,7 @@ void CollisionHandler::checkCollisionBulletPlayer(){
             if (shot->_shot_sprite.getGlobalBounds().intersects(_gameHandler->_player->getShipSprite()->getGlobalBounds())) {
                 enemyShot = myEnemy->_shots->erase(enemyShot);
                 _gameHandler->_player->vidas--;
+                continue;
                 if(!_gameHandler->_player->vidas <= 0){
                     _gameHandler->_player->vidas = 0;
                 }
